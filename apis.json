@@ -1,0 +1,55 @@
+{
+    "name": "TransportAPI",
+    "description": "the digital platform for transport",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28269-developer-transportapi-com.jpg",
+    "tags": [
+        "have api"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/transportapi\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "TransportAPI",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/28269-developer-transportapi-com.jpg",
+            "humanURL": "https:\/\/developer.transportapi.com",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/transportapi-openapi.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/transportapi-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Email",
+            "url": "info@transportapi.com"
+        },
+        {
+            "type": "Email",
+            "url": "support@transportapi.com"
+        },
+        {
+            "type": "Pricing",
+            "url": "https:\/\/www.transportapi.com\/plans\/"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/transportapi"
+        },
+        {
+            "type": "Website",
+            "url": "https:\/\/developer.transportapi.com"
+        }
+    ]
+}
