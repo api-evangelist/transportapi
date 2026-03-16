@@ -1,16 +1,18 @@
 aid: transportapi
 name: TransportAPI
 description: >-
-  TransportAPI developer portal0203 Access multimodal UK public transport data
-  via APIs.04 Power apps and websites or carry out datamining jobs. 
+  TransportAPI provides access to multimodal UK public transport data via APIs
+  to power apps, websites, or data mining jobs.
 type: Index
 position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-  - API
+  - Transport
+  - UK
+  - Public Transit
 created: '2025-05-02'
-modified: '2025-05-02'
+modified: '2026-03-16'
 url: >-
   https://raw.githubusercontent.com/api-evangelist/transportapi/refs/heads/main/apis.yml
 specificationVersion: '0.19'
@@ -18,14 +20,24 @@ apis:
   - aid: transportapi:transportapi
     name: TransportAPI
     description: >-
-      TransportAPI developer portal0203 Access multimodal UK public transport
-      data via APIs.04 Power apps and websites or carry out datamining jobs. 
-    humanURL: ' https://developer.transportapi.com/'
+      Access multimodal UK public transport data via APIs to power apps and
+      websites or carry out datamining jobs.
+    humanURL: https://developer.transportapi.com/
+    baseURL: https://transportapi.com
     tags:
-      - API
+      - Transport
+      - UK
+      - Public Transit
     properties:
       - type: Documentation
-        url: ' https://developer.transportapi.com/'
+        url: https://developer.transportapi.com/
+      - type: Sign Up
+        url: https://developer.transportapi.com/
+common:
+  - type: Website
+    url: https://www.transportapi.com/
+  - type: Documentation
+    url: https://developer.transportapi.com/
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
