@@ -1,0 +1,154 @@
+name: TransportAPI Vocabulary
+description: Domain vocabulary for TransportAPI covering UK public transport data, departures, journey planning, and performance
+tags:
+  - UK Transport
+  - Public Transit
+  - Bus
+  - Rail
+  - Journey Planning
+terms:
+  - term: ATCO Code
+    label: ATCO Code
+    definition: Administrative Traffic Commissioner Office code - a unique identifier for UK bus stops assigned by local authorities
+    related:
+      - Bus Stop
+      - Live Departures
+
+  - term: CRS Code
+    label: CRS Code
+    definition: Computer Reservation System code - a 3-letter code uniquely identifying UK railway stations
+    related:
+      - Train Station
+      - Live Departures
+
+  - term: Live Departures
+    label: Live Departures
+    definition: Real-time departure information for transport stops, combining scheduled timetables with live predictions
+    properties:
+      - aimed_departure_time
+      - expected_departure_time
+      - status
+      - live
+
+  - term: Timetable
+    label: Timetable
+    definition: The scheduled times at which transport services are planned to depart from stops on a given date
+    related:
+      - Service
+      - Stop
+
+  - term: Operator
+    label: Transport Operator
+    definition: A company or organization licensed to operate transport services on specific routes
+    related:
+      - Service
+      - Route
+
+  - term: Service
+    label: Transport Service
+    definition: A specific transport journey identified by operator, line, and direction
+    related:
+      - Route
+      - Operator
+      - Timetable
+
+  - term: TAPI
+    label: TAPI
+    definition: TransportAPI's managed service product prefix, used across their suite of transport data APIs
+    related:
+      - Journey Planner
+      - Bus Information
+      - Rail Information
+
+  - term: Journey Planner
+    label: Journey Planner
+    definition: A system that calculates multimodal travel routes from origin to destination using available transport services
+    related:
+      - Route
+      - Mode
+      - Service
+
+  - term: Bus Performance
+    label: Bus Performance
+    definition: Analytics measuring the punctuality, lateness, and reliability of bus services against scheduled times
+    related:
+      - Traffic Commissioner
+      - Punctuality
+
+  - term: Rail Performance
+    label: Rail Performance
+    definition: Historical analysis of train service lateness and cancellations using official National data sources
+    related:
+      - Delay-Repay
+      - Cancellation
+
+  - term: Delay-Repay
+    label: Delay-Repay
+    definition: A compensation scheme that allows rail passengers to claim refunds for delayed journeys
+    related:
+      - Rail Performance
+      - Cancellation
+
+  - term: Traffic Commissioner
+    label: Traffic Commissioner
+    definition: A UK regulatory authority responsible for the licensing and regulation of bus operators
+    related:
+      - Bus Performance
+      - Operator
+
+  - term: Places
+    label: Transport Places
+    definition: Geospatial data about transport access points including bus stops, train stations, and points of interest
+    related:
+      - ATCO Code
+      - CRS Code
+      - Geospatial
+
+  - term: Calling Point
+    label: Calling Point
+    definition: An intermediate stop at which a train service will call (stop) during its journey
+    related:
+      - Train Station
+      - Service
+
+  - term: Mode
+    label: Transport Mode
+    definition: The type of transport service
+    values:
+      - bus
+      - train
+      - metro
+      - coach
+      - tram
+      - light-rail
+      - cycle
+      - car
+      - ferry
+      - taxi
+
+  - term: app_id
+    label: Application ID
+    definition: A developer credential used with TransportAPI to identify the application making API requests
+    related:
+      - app_key
+      - Authentication
+
+  - term: app_key
+    label: Application Key
+    definition: A secret credential used with TransportAPI to authenticate API requests alongside the app_id
+    related:
+      - app_id
+      - Authentication
+
+  - term: NeTEx
+    label: NeTEx
+    definition: Network Timetable Exchange - European standard for exchange of complex public transport data
+    related:
+      - GTFS
+      - Timetable
+
+  - term: Great Britain
+    label: Great Britain
+    definition: The geographic scope of TransportAPI data covering England, Scotland, and Wales
+    related:
+      - UK Transport

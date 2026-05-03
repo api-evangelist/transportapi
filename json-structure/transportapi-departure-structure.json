@@ -1,0 +1,16 @@
+{
+  "name": "TransportAPI Departure",
+  "description": "Structure of a UK transport departure from a stop or station",
+  "fields": [
+    {"name": "mode", "type": "string", "required": true, "description": "Transport mode (bus, train, etc.)"},
+    {"name": "line", "type": "string", "required": true, "description": "Line or route number"},
+    {"name": "line_name", "type": "string", "required": false, "description": "Line display name"},
+    {"name": "direction", "type": "string", "required": false, "description": "Direction or destination"},
+    {"name": "operator", "type": "string", "required": false, "description": "Operator code"},
+    {"name": "operator_name", "type": "string", "required": false, "description": "Operator display name"},
+    {"name": "date", "type": "date", "required": false, "description": "Scheduled date"},
+    {"name": "aimed_departure_time", "type": "string", "required": true, "description": "Scheduled departure time (HH:MM)"},
+    {"name": "expected_departure_time", "type": "string", "required": false, "description": "Predicted departure time (HH:MM)"},
+    {"name": "status", "type": "object", "required": false, "description": "Live status including delay info"}
+  ]
+}

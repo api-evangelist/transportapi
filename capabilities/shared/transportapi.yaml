@@ -1,0 +1,309 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TransportAPI"
+  description: "UK public transport data including real-time bus and rail departures, journey planning, performance analytics, and places lookup."
+  tags:
+    - Public Transit
+    - UK Transport
+    - Bus
+    - Rail
+    - Journey Planning
+    - Real-Time
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TRANSPORTAPI_APP_ID: TRANSPORTAPI_APP_ID
+      TRANSPORTAPI_APP_KEY: TRANSPORTAPI_APP_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: transportapi
+      baseUri: https://transportapi.com/v3/uk
+      description: "UK public transport data API for bus, rail, journey planning, and places."
+      authentication:
+        type: apikey
+        key: X-App-Key
+        value: "{{TRANSPORTAPI_APP_KEY}}"
+        placement: header
+      resources:
+        - name: bus-live
+          path: /bus/stop/{atcocode}/live.json
+          description: "Real-time bus departure data for a stop"
+          operations:
+            - name: get-bus-stop-live-departures
+              method: GET
+              description: "Get real-time bus departures for a stop by ATCO code"
+              inputParameters:
+                - name: atcocode
+                  in: path
+                  type: string
+                  required: true
+                  description: "ATCO code of the bus stop"
+                - name: group
+                  in: query
+                  type: string
+                  required: false
+                  description: "Group departures by route"
+                - name: nextbuses
+                  in: query
+                  type: string
+                  required: false
+                  description: "Include real-time predictions"
+                - name: limit
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Maximum departures to return"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: bus-timetable
+          path: /bus/stop/{atcocode}/timetable.json
+          description: "Scheduled bus timetable for a stop"
+          operations:
+            - name: get-bus-stop-timetable
+              method: GET
+              description: "Get scheduled bus timetable for a stop"
+              inputParameters:
+                - name: atcocode
+                  in: path
+                  type: string
+                  required: true
+                  description: "ATCO code of the bus stop"
+                - name: date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Date in YYYY-MM-DD format"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: train-live
+          path: /train/station/{station_code}/live.json
+          description: "Real-time train departure and arrival data"
+          operations:
+            - name: get-train-station-live-departures
+              method: GET
+              description: "Get real-time train departures for a station"
+              inputParameters:
+                - name: station_code
+                  in: path
+                  type: string
+                  required: true
+                  description: "CRS station code"
+                - name: train_status
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by train status"
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Arrival, departure, or pass"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: places
+          path: /places.json
+          description: "Transport stops, stations, and points of interest"
+          operations:
+            - name: search-places
+              method: GET
+              description: "Search for transport access points by name or location"
+              inputParameters:
+                - name: query
+                  in: query
+                  type: string
+                  required: false
+                  description: "Text search query"
+                - name: lat
+                  in: query
+                  type: number
+                  required: false
+                  description: "Latitude for proximity search"
+                - name: lon
+                  in: query
+                  type: number
+                  required: false
+                  description: "Longitude for proximity search"
+                - name: type
+                  in: query
+                  type: string
+                  required: false
+                  description: "Filter by place type"
+                - name: radius
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Search radius in meters"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+        - name: journey
+          path: /journey/from/{from_coords}/to/{to_coords}.json
+          description: "Multimodal journey planning"
+          operations:
+            - name: plan-journey
+              method: GET
+              description: "Plan a multimodal journey across Great Britain"
+              inputParameters:
+                - name: from_coords
+                  in: path
+                  type: string
+                  required: true
+                  description: "Origin as lat,lon or station code"
+                - name: to_coords
+                  in: path
+                  type: string
+                  required: true
+                  description: "Destination as lat,lon or station code"
+                - name: date
+                  in: query
+                  type: string
+                  required: false
+                  description: "Journey date YYYY-MM-DD"
+                - name: time
+                  in: query
+                  type: string
+                  required: false
+                  description: "Journey time HH:MM"
+                - name: time_is
+                  in: query
+                  type: string
+                  required: false
+                  description: "Departing or Arriving"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: transportapi-rest
+      resources:
+        - path: /v1/bus-departures/{atcocode}
+          name: bus-departures
+          operations:
+            - method: GET
+              name: get-bus-departures
+              description: "Get real-time bus departures"
+              call: "transportapi.get-bus-stop-live-departures"
+              with:
+                atcocode: "rest.atcocode"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/train-departures/{station_code}
+          name: train-departures
+          operations:
+            - method: GET
+              name: get-train-departures
+              description: "Get real-time train departures"
+              call: "transportapi.get-train-station-live-departures"
+              with:
+                station_code: "rest.station_code"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/journeys
+          name: journeys
+          operations:
+            - method: GET
+              name: plan-journey
+              description: "Plan a journey across Great Britain"
+              call: "transportapi.plan-journey"
+              with:
+                from_coords: "rest.from_coords"
+                to_coords: "rest.to_coords"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/places
+          name: places
+          operations:
+            - method: GET
+              name: search-places
+              description: "Search for transport access points"
+              call: "transportapi.search-places"
+              with:
+                query: "rest.query"
+                lat: "rest.lat"
+                lon: "rest.lon"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: transportapi-mcp
+      transport: http
+      tools:
+        - name: get-bus-departures
+          description: "Get real-time UK bus departures for a stop by ATCO code"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.get-bus-stop-live-departures"
+          with:
+            atcocode: "tools.atcocode"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-train-departures
+          description: "Get real-time UK train departures for a station by CRS code"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.get-train-station-live-departures"
+          with:
+            station_code: "tools.station_code"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: plan-uk-journey
+          description: "Plan a multimodal journey across Great Britain"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.plan-journey"
+          with:
+            from_coords: "tools.from_coords"
+            to_coords: "tools.to_coords"
+            date: "tools.date"
+            time: "tools.time"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: search-transport-places
+          description: "Search for UK transport stops, stations, and access points"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.search-places"
+          with:
+            query: "tools.query"
+            lat: "tools.lat"
+            lon: "tools.lon"
+          outputParameters:
+            - type: object
+              mapping: "$."

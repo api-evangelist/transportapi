@@ -1,0 +1,62 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://transportapi.com/v3/uk/journey/from/51.5074,-0.1278/to/51.5033,-0.1195.json?date=2026-05-03&time=10:00&time_is=Departing&app_id=YOUR_APP_ID&app_key=YOUR_APP_KEY"
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "request_time": "2026-05-03T10:00:00+01:00",
+      "source": "TransportAPI",
+      "acknowledgements": "Powered by TransportAPI",
+      "routes": [
+        {
+          "duration": 1020,
+          "departure_datetime": "2026-05-03T10:05:00+01:00",
+          "arrival_datetime": "2026-05-03T10:22:00+01:00",
+          "route_parts": [
+            {
+              "mode": "walk",
+              "from_point_name": "Trafalgar Square",
+              "to_point_name": "Charing Cross Station",
+              "departure_datetime": "2026-05-03T10:05:00+01:00",
+              "arrival_datetime": "2026-05-03T10:09:00+01:00",
+              "line_name": null,
+              "operator_name": null,
+              "coordinates": [
+                [-0.1278, 51.5074],
+                [-0.1241, 51.5068]
+              ]
+            },
+            {
+              "mode": "train",
+              "from_point_name": "Charing Cross",
+              "to_point_name": "London Bridge",
+              "departure_datetime": "2026-05-03T10:10:00+01:00",
+              "arrival_datetime": "2026-05-03T10:19:00+01:00",
+              "line_name": "South Eastern",
+              "operator_name": "South Eastern",
+              "coordinates": [
+                [-0.1241, 51.5068],
+                [-0.0873, 51.5054]
+              ]
+            },
+            {
+              "mode": "walk",
+              "from_point_name": "London Bridge Station",
+              "to_point_name": "Borough Market",
+              "departure_datetime": "2026-05-03T10:19:00+01:00",
+              "arrival_datetime": "2026-05-03T10:22:00+01:00",
+              "line_name": null,
+              "operator_name": null,
+              "coordinates": [
+                [-0.0873, 51.5054],
+                [-0.0901, 51.5050]
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

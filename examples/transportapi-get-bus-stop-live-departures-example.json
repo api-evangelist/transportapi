@@ -1,0 +1,57 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "https://transportapi.com/v3/uk/bus/stop/0180BAA00091/live.json?group=route&nextbuses=yes&app_id=YOUR_APP_ID&app_key=YOUR_APP_KEY",
+    "headers": {
+      "X-App-Id": "YOUR_APP_ID",
+      "X-App-Key": "YOUR_APP_KEY"
+    }
+  },
+  "response": {
+    "status": 200,
+    "body": {
+      "atcocode": "0180BAA00091",
+      "bearing": "N",
+      "stop_name": "Oxford Street (Stop O)",
+      "request_time": "2026-05-03T10:15:00+01:00",
+      "departures": {
+        "12": [
+          {
+            "mode": "bus",
+            "line": "12",
+            "line_name": "12",
+            "direction": "Dulwich/Forest Hill",
+            "operator": "LN",
+            "operator_name": "London Central Buses",
+            "date": "2026-05-03",
+            "expected_departure_date": "2026-05-03",
+            "aimed_departure_time": "10:18",
+            "expected_departure_time": "10:20",
+            "status": {
+              "live": true,
+              "delay": "+2"
+            }
+          }
+        ],
+        "73": [
+          {
+            "mode": "bus",
+            "line": "73",
+            "line_name": "73",
+            "direction": "Victoria",
+            "operator": "LN",
+            "operator_name": "London Central Buses",
+            "date": "2026-05-03",
+            "expected_departure_date": "2026-05-03",
+            "aimed_departure_time": "10:22",
+            "expected_departure_time": "10:22",
+            "status": {
+              "live": true,
+              "delay": "0"
+            }
+          }
+        ]
+      }
+    }
+  }
+}

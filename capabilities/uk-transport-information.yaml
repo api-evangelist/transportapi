@@ -1,0 +1,195 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "TransportAPI UK Transport Information"
+  description: >-
+    Workflow capability for UK public transport data covering real-time bus
+    and rail departures, multimodal journey planning, and transport places
+    lookup. Used by transit app developers, website builders, and data
+    analytics teams working with UK transport data.
+  tags:
+    - Public Transit
+    - UK Transport
+    - Bus
+    - Rail
+    - Journey Planning
+    - Real-Time
+    - Analytics
+  created: "2026-05-03"
+  modified: "2026-05-03"
+
+binds:
+  - namespace: env
+    keys:
+      TRANSPORTAPI_APP_ID: TRANSPORTAPI_APP_ID
+      TRANSPORTAPI_APP_KEY: TRANSPORTAPI_APP_KEY
+
+capability:
+  consumes:
+    - import: transportapi
+      location: ./shared/transportapi.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: uk-transport-api
+      description: "Unified REST API for UK public transport data and journey planning."
+      resources:
+        - path: /v1/bus-departures
+          name: bus-departures
+          description: "Real-time bus departure boards"
+          operations:
+            - method: GET
+              name: get-bus-live-departures
+              description: "Get live bus departures for a stop"
+              call: "transportapi.get-bus-stop-live-departures"
+              with:
+                atcocode: "rest.atcocode"
+                group: "rest.group"
+                nextbuses: "rest.nextbuses"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/bus-timetables
+          name: bus-timetables
+          description: "Scheduled bus timetables"
+          operations:
+            - method: GET
+              name: get-bus-timetable
+              description: "Get scheduled timetable for a bus stop"
+              call: "transportapi.get-bus-stop-timetable"
+              with:
+                atcocode: "rest.atcocode"
+                date: "rest.date"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/train-departures
+          name: train-departures
+          description: "Real-time train departure boards"
+          operations:
+            - method: GET
+              name: get-train-live-departures
+              description: "Get live train departures for a station"
+              call: "transportapi.get-train-station-live-departures"
+              with:
+                station_code: "rest.station_code"
+                train_status: "rest.train_status"
+                type: "rest.type"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/journeys
+          name: journeys
+          description: "Multimodal journey planning"
+          operations:
+            - method: GET
+              name: plan-journey
+              description: "Plan a multimodal journey across Great Britain"
+              call: "transportapi.plan-journey"
+              with:
+                from_coords: "rest.from_coords"
+                to_coords: "rest.to_coords"
+                date: "rest.date"
+                time: "rest.time"
+                time_is: "rest.time_is"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+        - path: /v1/places
+          name: places
+          description: "Transport stops and access points"
+          operations:
+            - method: GET
+              name: search-places
+              description: "Find transport stops and stations"
+              call: "transportapi.search-places"
+              with:
+                query: "rest.query"
+                lat: "rest.lat"
+                lon: "rest.lon"
+                type: "rest.type"
+                radius: "rest.radius"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: uk-transport-mcp
+      transport: http
+      description: "MCP server for AI-assisted UK transport queries and journey planning."
+      tools:
+        - name: get-uk-bus-departures
+          description: "Get live UK bus departure times for a stop using its ATCO code"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.get-bus-stop-live-departures"
+          with:
+            atcocode: "tools.atcocode"
+            limit: "tools.limit"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-uk-bus-timetable
+          description: "Get scheduled UK bus timetable for a stop"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.get-bus-stop-timetable"
+          with:
+            atcocode: "tools.atcocode"
+            date: "tools.date"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: get-uk-train-departures
+          description: "Get live UK train departures for a station using its CRS code"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.get-train-station-live-departures"
+          with:
+            station_code: "tools.station_code"
+            type: "tools.type"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: plan-uk-journey
+          description: "Plan a multimodal journey across Great Britain by bus, train, or tram"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.plan-journey"
+          with:
+            from_coords: "tools.from_coords"
+            to_coords: "tools.to_coords"
+            date: "tools.date"
+            time: "tools.time"
+            time_is: "tools.time_is"
+          outputParameters:
+            - type: object
+              mapping: "$."
+
+        - name: search-uk-transport-places
+          description: "Find UK bus stops, train stations, and transport access points by name or location"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "transportapi.search-places"
+          with:
+            query: "tools.query"
+            lat: "tools.lat"
+            lon: "tools.lon"
+            type: "tools.type"
+          outputParameters:
+            - type: object
+              mapping: "$."

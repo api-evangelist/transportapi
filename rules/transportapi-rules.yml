@@ -1,0 +1,88 @@
+extends: spectral:oas
+rules:
+  transportapi-operation-summary-title-case:
+    description: All operation summaries must use Title Case
+    severity: warn
+    given: "$.paths[*][*].summary"
+    then:
+      function: pattern
+      functionOptions:
+        match: "^[A-Z][a-zA-Z]*(\\s[A-Z][a-zA-Z]*)*$"
+
+  transportapi-operationid-required:
+    description: All operations must have an operationId
+    severity: error
+    given: "$.paths[*][*]"
+    then:
+      field: operationId
+      function: truthy
+
+  transportapi-tags-required:
+    description: All operations must have tags
+    severity: warn
+    given: "$.paths[*][*]"
+    then:
+      field: tags
+      function: truthy
+
+  transportapi-json-extension-in-paths:
+    description: UK transport endpoints should end with .json extension
+    severity: hint
+    given: "$.paths"
+    then:
+      function: schema
+      functionOptions:
+        schema:
+          type: object
+          patternProperties:
+            ".*\\.json$": {}
+
+  transportapi-response-200-required:
+    description: All GET operations must have a 200 response
+    severity: error
+    given: "$.paths[*].get.responses"
+    then:
+      field: "200"
+      function: truthy
+
+  transportapi-app-auth-params:
+    description: API authentication via app_id and app_key query parameters must be documented
+    severity: warn
+    given: "$.components.securitySchemes"
+    then:
+      function: truthy
+
+  transportapi-uk-base-path:
+    description: All paths should operate under UK data context
+    severity: info
+    given: "$.servers[*].url"
+    then:
+      function: pattern
+      functionOptions:
+        match: ".*transportapi\\.com.*"
+
+  transportapi-atcocode-path-param:
+    description: Bus stop path parameters should be named atcocode
+    severity: hint
+    given: "$.paths[*][*].parameters[*][?(@.in=='path' && @.name=='station_stop')]"
+    then:
+      function: falsy
+
+  transportapi-datetime-format:
+    description: Date-time properties should use ISO 8601 format
+    severity: warn
+    given: "$.components.schemas[*].properties[?(@.format=='date-time')]"
+    then:
+      field: format
+      function: enumeration
+      functionOptions:
+        values:
+          - date-time
+
+  transportapi-pagination-limit:
+    description: Collection endpoints should support limit parameter
+    severity: hint
+    given: "$.paths[*].get.parameters[*][?(@.name=='limit')]"
+    then:
+      field: schema
+      function: truthy
