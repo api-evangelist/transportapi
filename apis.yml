@@ -54,7 +54,7 @@ apis:
         url: capabilities/uk-transport-information.yaml
       - type: Vocabulary
         url: vocabulary/transportapi-vocabulary.yml
-      - type: Sign Up
+      - type: SignUp
         url: https://developer.transportapi.com/
     x-services:
       - TAPI Journey Planner
@@ -74,7 +74,7 @@ common:
     url: https://www.transportapi.com/
   - type: Documentation
     url: https://developer.transportapi.com/
-  - type: Sign Up
+  - type: SignUp
     url: https://developer.transportapi.com/
   - type: GitHub
     url: https://github.com/transportapi
