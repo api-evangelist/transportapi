@@ -1,0 +1,250 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: TransportAPI — Bus Information
+  description: 'TransportAPI — Bus Information. 3 operations. Lead operation: Get Bus Route Timetable. Self-contained Naftiko
+    capability covering one Transportapi business surface.'
+  tags:
+  - Transportapi
+  - Bus Information
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TRANSPORTAPI_API_KEY: TRANSPORTAPI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: transportapi-bus-information
+    baseUri: https://transportapi.com/v3/uk
+    description: TransportAPI — Bus Information business capability. Self-contained, no shared references.
+    resources:
+    - name: bus-route-operator-line-direction-atcocode-date-timetable.json
+      path: /bus/route/{operator}/{line}/{direction}/{atcocode}/{date}/timetable.json
+      operations:
+      - name: getbusroutetimetable
+        method: GET
+        description: Get Bus Route Timetable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: operator
+          in: path
+          type: string
+          description: Bus operator code
+          required: true
+        - name: line
+          in: path
+          type: string
+          description: Bus line/route number
+          required: true
+        - name: direction
+          in: path
+          type: string
+          description: Direction of travel
+          required: true
+        - name: atcocode
+          in: path
+          type: string
+          description: Starting stop ATCO code
+          required: true
+        - name: date
+          in: path
+          type: string
+          description: Date for timetable (YYYY-MM-DD)
+          required: true
+        - name: app_id
+          in: query
+          type: string
+        - name: app_key
+          in: query
+          type: string
+    - name: bus-stop-atcocode-live.json
+      path: /bus/stop/{atcocode}/live.json
+      operations:
+      - name: getbusstoplivedepartures
+        method: GET
+        description: Get Bus Stop Live Departures
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: atcocode
+          in: path
+          type: string
+          description: The ATCO code of the bus stop
+          required: true
+        - name: group
+          in: query
+          type: string
+          description: How to group departures in the response
+        - name: nextbuses
+          in: query
+          type: string
+          description: Whether to include real-time next bus predictions
+        - name: limit
+          in: query
+          type: integer
+          description: Maximum number of departures to return
+        - name: app_id
+          in: query
+          type: string
+          description: Application ID for authentication
+        - name: app_key
+          in: query
+          type: string
+          description: Application key for authentication
+    - name: bus-stop-atcocode-timetable.json
+      path: /bus/stop/{atcocode}/timetable.json
+      operations:
+      - name: getbusstoptimetable
+        method: GET
+        description: Get Bus Stop Timetable
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: atcocode
+          in: path
+          type: string
+          description: The ATCO code of the bus stop
+          required: true
+        - name: date
+          in: query
+          type: string
+          description: Date for timetable (YYYY-MM-DD, defaults to today)
+        - name: app_id
+          in: query
+          type: string
+        - name: app_key
+          in: query
+          type: string
+    authentication:
+      type: apikey
+      key: X-App-Id
+      value: '{{env.TRANSPORTAPI_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: transportapi-bus-information-rest
+    port: 8080
+    description: REST adapter for TransportAPI — Bus Information. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/bus/route/{operator}/{line}/{direction}/{atcocode}/{date}/timetable-json
+      name: bus-route-operator-line-direction-atcocode-date-timetable-json
+      description: REST surface for bus-route-operator-line-direction-atcocode-date-timetable.json.
+      operations:
+      - method: GET
+        name: getbusroutetimetable
+        description: Get Bus Route Timetable
+        call: transportapi-bus-information.getbusroutetimetable
+        with:
+          operator: rest.operator
+          line: rest.line
+          direction: rest.direction
+          atcocode: rest.atcocode
+          date: rest.date
+          app_id: rest.app_id
+          app_key: rest.app_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/bus/stop/{atcocode}/live-json
+      name: bus-stop-atcocode-live-json
+      description: REST surface for bus-stop-atcocode-live.json.
+      operations:
+      - method: GET
+        name: getbusstoplivedepartures
+        description: Get Bus Stop Live Departures
+        call: transportapi-bus-information.getbusstoplivedepartures
+        with:
+          atcocode: rest.atcocode
+          group: rest.group
+          nextbuses: rest.nextbuses
+          limit: rest.limit
+          app_id: rest.app_id
+          app_key: rest.app_key
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/bus/stop/{atcocode}/timetable-json
+      name: bus-stop-atcocode-timetable-json
+      description: REST surface for bus-stop-atcocode-timetable.json.
+      operations:
+      - method: GET
+        name: getbusstoptimetable
+        description: Get Bus Stop Timetable
+        call: transportapi-bus-information.getbusstoptimetable
+        with:
+          atcocode: rest.atcocode
+          date: rest.date
+          app_id: rest.app_id
+          app_key: rest.app_key
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: transportapi-bus-information-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for TransportAPI — Bus Information. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: get-bus-route-timetable
+      description: Get Bus Route Timetable
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: transportapi-bus-information.getbusroutetimetable
+      with:
+        operator: tools.operator
+        line: tools.line
+        direction: tools.direction
+        atcocode: tools.atcocode
+        date: tools.date
+        app_id: tools.app_id
+        app_key: tools.app_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bus-stop-live-departures
+      description: Get Bus Stop Live Departures
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: transportapi-bus-information.getbusstoplivedepartures
+      with:
+        atcocode: tools.atcocode
+        group: tools.group
+        nextbuses: tools.nextbuses
+        limit: tools.limit
+        app_id: tools.app_id
+        app_key: tools.app_key
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: get-bus-stop-timetable
+      description: Get Bus Stop Timetable
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: transportapi-bus-information.getbusstoptimetable
+      with:
+        atcocode: tools.atcocode
+        date: tools.date
+        app_id: tools.app_id
+        app_key: tools.app_key
+      outputParameters:
+      - type: object
+        mapping: $.
