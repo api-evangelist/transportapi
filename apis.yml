@@ -7,25 +7,6 @@ position: Consumer
 access: 3rd-Party
 image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
-- Public Transit
-- Transport
-- UK
-- Real-Time
-- Journey Planning
-- Bus
-- Rail
-created: '2025-05-02'
-modified: '2026-05-19'
-url: https://raw.githubusercontent.com/api-evangelist/transportapi/refs/heads/main/apis.yml
-specificationVersion: '0.19'
-apis:
-- aid: transportapi:transportapi
-  name: TransportAPI
-  description: UK public transport data API providing real-time bus and rail departures, multimodal journey planning, bus
-    and rail performance analytics, and transport places lookup across Great Britain.
-  humanURL: https://developer.transportapi.com/
-  baseURL: https://transportapi.com/v3/uk
-  tags:
   - Public Transit
   - Transport
   - UK
@@ -33,53 +14,74 @@ apis:
   - Journey Planning
   - Bus
   - Rail
-  properties:
+created: '2025-05-02'
+modified: '2026-05-19'
+url: https://raw.githubusercontent.com/api-evangelist/transportapi/refs/heads/main/apis.yml
+specificationVersion: '0.19'
+apis:
+  - aid: transportapi:transportapi
+    name: TransportAPI
+    description: UK public transport data API providing real-time bus and rail departures, multimodal journey planning, bus
+      and rail performance analytics, and transport places lookup across Great Britain.
+    humanURL: https://developer.transportapi.com/
+    baseURL: https://transportapi.com/v3/uk
+    tags:
+    - Public Transit
+    - Transport
+    - UK
+    - Real-Time
+    - Journey Planning
+    - Bus
+    - Rail
+    properties:
+    - type: Documentation
+      url: https://developer.transportapi.com/docs/
+    - type: OpenAPI
+      url: openapi/transportapi-openapi.yml
+    - type: JSONStructure
+      url: json-structure/transportapi-departure-structure.json
+    - type: JSONLD
+      url: json-ld/transportapi-context.jsonld
+    - type: SpectralRules
+      url: rules/transportapi-rules.yml
+    - type: NaftikoCapabilities
+      url: capabilities/uk-transport-information.yaml
+    - type: Vocabulary
+      url: vocabulary/transportapi-vocabulary.yml
+    - type: SignUp
+      url: https://developer.transportapi.com/
+    - type: NaftikoCapability
+      url: capabilities/transportapi-bus-information.yaml
+    - type: NaftikoCapability
+      url: capabilities/transportapi-journey-planner.yaml
+    - type: NaftikoCapability
+      url: capabilities/transportapi-places.yaml
+    - type: NaftikoCapability
+      url: capabilities/transportapi-rail-information.yaml
+    x-services:
+    - TAPI Journey Planner
+    - TAPI Bus Information
+    - TAPI Bus Performance
+    - TAPI Rail Information
+    - TAPI Rail Performance
+    - TAPI Places
+    x-authentication:
+      type: API Key
+      description: app_id and app_key query parameters or X-App-Id and X-App-Key HTTP headers
+    x-pricing:
+      free: 30 hits per day forever
+      paid: Higher allowance tiers via subscription
+common:
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/transportapi
+  - type: Website
+    url: https://www.transportapi.com/
   - type: Documentation
-    url: https://developer.transportapi.com/docs/
-  - type: OpenAPI
-    url: openapi/transportapi-openapi.yml
-  - type: JSONStructure
-    url: json-structure/transportapi-departure-structure.json
-  - type: JSONLD
-    url: json-ld/transportapi-context.jsonld
-  - type: SpectralRules
-    url: rules/transportapi-rules.yml
-  - type: NaftikoCapabilities
-    url: capabilities/uk-transport-information.yaml
-  - type: Vocabulary
-    url: vocabulary/transportapi-vocabulary.yml
+    url: https://developer.transportapi.com/
   - type: SignUp
     url: https://developer.transportapi.com/
-  - type: NaftikoCapability
-    url: capabilities/transportapi-bus-information.yaml
-  - type: NaftikoCapability
-    url: capabilities/transportapi-journey-planner.yaml
-  - type: NaftikoCapability
-    url: capabilities/transportapi-places.yaml
-  - type: NaftikoCapability
-    url: capabilities/transportapi-rail-information.yaml
-  x-services:
-  - TAPI Journey Planner
-  - TAPI Bus Information
-  - TAPI Bus Performance
-  - TAPI Rail Information
-  - TAPI Rail Performance
-  - TAPI Places
-  x-authentication:
-    type: API Key
-    description: app_id and app_key query parameters or X-App-Id and X-App-Key HTTP headers
-  x-pricing:
-    free: 30 hits per day forever
-    paid: Higher allowance tiers via subscription
-common:
-- type: Website
-  url: https://www.transportapi.com/
-- type: Documentation
-  url: https://developer.transportapi.com/
-- type: SignUp
-  url: https://developer.transportapi.com/
-- type: GitHub
-  url: https://github.com/transportapi
+  - type: GitHub
+    url: https://github.com/transportapi
 maintainers:
-- FN: Kin Lane
-  email: kin@apievangelist.com
+  - FN: Kin Lane
+    email: kin@apievangelist.com
