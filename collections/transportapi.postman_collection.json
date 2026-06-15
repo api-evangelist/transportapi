@@ -1,0 +1,1691 @@
+{
+  "item": [
+    {
+      "id": "86bb6386-6737-44e2-a7d5-bf7b2be9ac50",
+      "name": "Bus Information",
+      "description": {
+        "content": "Real-time and scheduled bus departure and arrival data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "4b73f025-3792-4922-969b-37b586df095b",
+          "name": "Get Bus Stop Live Departures",
+          "request": {
+            "name": "Get Bus Stop Live Departures",
+            "description": {
+              "content": "Returns real-time departure information for buses at a specific stop, identified by its ATCO code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bus",
+                "stop",
+                ":atcocode",
+                "live.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "route",
+                  "description": "How to group departures in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextbuses",
+                  "value": "yes",
+                  "description": "Whether to include real-time next bus predictions"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "5",
+                  "description": "Maximum number of departures to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "Application ID for authentication"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>",
+                  "description": "Application key for authentication"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "atcocode",
+                  "description": "(Required) The ATCO code of the bus stop"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cd826589-cc59-4d6b-9845-4637a49f90b3",
+              "name": "Successful response with live bus departures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "route"
+                    },
+                    {
+                      "key": "nextbuses",
+                      "value": "yes"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"atcocode\": \"string\",\n  \"bearing\": \"string\",\n  \"stop_name\": \"string\",\n  \"request_time\": \"1993-12-19T22:29:53.505Z\",\n  \"departures\": {\n    \"key_0\": [\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      },\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      }\n    ],\n    \"key_1\": [\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      },\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b6c4f3e-748e-445f-9b43-a7d47754a9e4",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "route"
+                    },
+                    {
+                      "key": "nextbuses",
+                      "value": "yes"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "35dbf4e5-483c-4764-828e-6af1addfdbca",
+              "name": "Bus stop not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "route"
+                    },
+                    {
+                      "key": "nextbuses",
+                      "value": "yes"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5623dc4c-8670-437b-bf03-bba20733c888",
+          "name": "Get Bus Stop Timetable",
+          "request": {
+            "name": "Get Bus Stop Timetable",
+            "description": {
+              "content": "Returns scheduled timetable for buses at a specific stop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bus",
+                "stop",
+                ":atcocode",
+                "timetable.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Date for timetable (YYYY-MM-DD, defaults to today)"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "atcocode",
+                  "description": "(Required) The ATCO code of the bus stop"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "93d98c49-88cf-40ab-83ef-5d1ca52cb05c",
+              "name": "Successful response with bus timetable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"atcocode\": \"string\",\n  \"stop_name\": \"string\",\n  \"request_time\": \"2017-09-29T12:24:19.003Z\",\n  \"departures\": [\n    {\n      \"mode\": \"string\",\n      \"line\": \"string\",\n      \"line_name\": \"string\",\n      \"direction\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"date\": \"string\",\n      \"expected_departure_date\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"status\": {\n        \"live\": false,\n        \"delay\": \"string\"\n      }\n    },\n    {\n      \"mode\": \"string\",\n      \"line\": \"string\",\n      \"line_name\": \"string\",\n      \"direction\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"date\": \"string\",\n      \"expected_departure_date\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"status\": {\n        \"live\": true,\n        \"delay\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "29d6616b-5311-41e4-afc3-0b12ea7c9cb9",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b7dfd5ea-684f-4621-ad83-1e22b2a59286",
+          "name": "Get Bus Route Timetable",
+          "request": {
+            "name": "Get Bus Route Timetable",
+            "description": {
+              "content": "Returns the complete timetable for a specific bus route, including all stops and scheduled times.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bus",
+                "route",
+                ":operator",
+                ":line",
+                ":direction",
+                ":atcocode",
+                ":date",
+                "timetable.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "operator",
+                  "description": "(Required) Bus operator code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line",
+                  "description": "(Required) Bus line/route number"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "direction",
+                  "description": "(Required) Direction of travel"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "atcocode",
+                  "description": "(Required) Starting stop ATCO code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "03940118-ab07-4d54-a848-0e60353a301a",
+              "name": "Successful response with route timetable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "route",
+                    ":operator",
+                    ":line",
+                    ":direction",
+                    ":atcocode",
+                    ":date",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operator",
+                      "description": "(Required) Bus operator code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line",
+                      "description": "(Required) Bus line/route number"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "direction",
+                      "description": "(Required) Direction of travel"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) Starting stop ATCO code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operator\": \"string\",\n  \"line\": \"string\",\n  \"direction\": \"string\",\n  \"stops\": [\n    {\n      \"atcocode\": \"string\",\n      \"name\": \"string\",\n      \"times\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"atcocode\": \"string\",\n      \"name\": \"string\",\n      \"times\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "676b6b22-e13e-4cc6-a9d8-8ba7ad351fbf",
+      "name": "Rail Information",
+      "description": {
+        "content": "Real-time and scheduled rail departure and arrival data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ff634c20-1e0b-42af-aaa9-5aa06703df0e",
+          "name": "Get Train Station Live Departures",
+          "request": {
+            "name": "Get Train Station Live Departures",
+            "description": {
+              "content": "Returns real-time departure and arrival information for trains at a specific station, including live status and calling points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "train",
+                "station",
+                ":station_code",
+                "live.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "train_status",
+                  "value": "passenger",
+                  "description": "Filter by train status"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "departure",
+                  "description": "Type of trains to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "station_code",
+                  "description": "(Required) The CRS (Computer Reservation System) station code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f4f7ef99-4447-400c-8e1e-1fb05fd4955f",
+              "name": "Successful response with live train departures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "train_status",
+                      "value": "passenger"
+                    },
+                    {
+                      "key": "type",
+                      "value": "departure"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS (Computer Reservation System) station code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"station_code\": \"string\",\n  \"station_name\": \"string\",\n  \"request_time\": \"2010-04-11T09:14:31.646Z\",\n  \"departures\": {\n    \"all\": [\n      {\n        \"mode\": \"string\",\n        \"service\": \"string\",\n        \"train_uid\": \"string\",\n        \"platform\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"best_departure_estimate_mins\": 1322,\n        \"status\": \"string\",\n        \"origin_name\": \"string\",\n        \"destination_name\": \"string\",\n        \"stops\": [\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          },\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"string\",\n        \"service\": \"string\",\n        \"train_uid\": \"string\",\n        \"platform\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"best_departure_estimate_mins\": 2362,\n        \"status\": \"string\",\n        \"origin_name\": \"string\",\n        \"destination_name\": \"string\",\n        \"stops\": [\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          },\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "841786fb-91d3-434b-8ceb-b271a6560a31",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "train_status",
+                      "value": "passenger"
+                    },
+                    {
+                      "key": "type",
+                      "value": "departure"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS (Computer Reservation System) station code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "b0c235b0-b8e1-49c2-aa99-fbf972bbd7c8",
+              "name": "Station not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "train_status",
+                      "value": "passenger"
+                    },
+                    {
+                      "key": "type",
+                      "value": "departure"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS (Computer Reservation System) station code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "562cd6bf-9837-4b93-a13b-a19cda7c1080",
+          "name": "Get Train Station Timetable",
+          "request": {
+            "name": "Get Train Station Timetable",
+            "description": {
+              "content": "Returns scheduled timetable for trains at a specific station on a given date and time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "train",
+                "station",
+                ":station_code",
+                ":date",
+                ":time",
+                "timetable.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "station_code",
+                  "description": "(Required) The CRS station code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "time",
+                  "description": "(Required) Time in HH:MM format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dbfeeb0f-9f9c-45df-b1b7-1189421d60ce",
+              "name": "Successful response with train timetable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    ":date",
+                    ":time",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS station code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "time",
+                      "description": "(Required) Time in HH:MM format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"station_code\": \"string\",\n  \"request_time\": \"1998-01-21T11:17:38.493Z\",\n  \"departures\": [\n    {\n      \"mode\": \"string\",\n      \"service\": \"string\",\n      \"train_uid\": \"string\",\n      \"platform\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"best_departure_estimate_mins\": 6525,\n      \"status\": \"string\",\n      \"origin_name\": \"string\",\n      \"destination_name\": \"string\",\n      \"stops\": [\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        },\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        }\n      ]\n    },\n    {\n      \"mode\": \"string\",\n      \"service\": \"string\",\n      \"train_uid\": \"string\",\n      \"platform\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"best_departure_estimate_mins\": 1462,\n      \"status\": \"string\",\n      \"origin_name\": \"string\",\n      \"destination_name\": \"string\",\n      \"stops\": [\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        },\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f11f3eed-dc7b-4a45-92f1-8f4be52b8a48",
+      "name": "Journey Planner",
+      "description": {
+        "content": "Multimodal journey planning across Great Britain",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b6d25c7-4212-4999-9a2f-2a30d81614fb",
+          "name": "Plan Journey",
+          "request": {
+            "name": "Plan Journey",
+            "description": {
+              "content": "Plans a multimodal journey from origin to destination across Great Britain, supporting bus, train, metro, coach, tram, light rail, cycle, car, ferry, and taxi modes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "journey",
+                "from",
+                ":from_coords",
+                "to",
+                "{{to_coords}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>",
+                  "description": "Journey planning service/engine to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "modes",
+                  "value": "<string>",
+                  "description": "Comma-separated transport modes to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Journey date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<string>",
+                  "description": "Journey time (HH:MM)"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_is",
+                  "value": "Departing",
+                  "description": "Whether time is departure or arrival"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "from_coords",
+                  "description": "(Required) Origin coordinates as lat,lon or ATCO/CRS code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "581b71c3-63b5-46c6-b665-6057427d54d3",
+              "name": "Successful response with journey options",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journey",
+                    "from",
+                    ":from_coords",
+                    "to",
+                    "{{to_coords}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_is",
+                      "value": "Departing"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "from_coords",
+                      "description": "(Required) Origin coordinates as lat,lon or ATCO/CRS code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_time\": \"2019-05-09T08:55:36.098Z\",\n  \"source\": \"string\",\n  \"acknowledgements\": \"string\",\n  \"routes\": [\n    {\n      \"duration\": 8749,\n      \"departure_datetime\": \"1955-07-23T14:34:56.046Z\",\n      \"arrival_datetime\": \"1968-04-14T07:54:16.642Z\",\n      \"route_parts\": [\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"1971-06-21T19:42:24.432Z\",\n          \"arrival_datetime\": \"1956-12-21T20:18:58.221Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              7461.611699612409,\n              5373.260806960081\n            ],\n            [\n              4806.458396181695,\n              2318.2707540750234\n            ]\n          ]\n        },\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"1967-04-28T12:49:30.155Z\",\n          \"arrival_datetime\": \"1948-08-26T18:46:25.616Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              9562.437598732635,\n              3805.154272944845\n            ],\n            [\n              9387.74377832296,\n              7337.272041323339\n            ]\n          ]\n        }\n      ]\n    },\n    {\n      \"duration\": 991,\n      \"departure_datetime\": \"1974-08-04T19:48:06.698Z\",\n      \"arrival_datetime\": \"1952-03-24T17:43:41.026Z\",\n      \"route_parts\": [\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"1962-06-08T01:48:38.694Z\",\n          \"arrival_datetime\": \"2003-04-01T17:09:04.691Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              8477.880272797789,\n              7931.552071513639\n            ],\n            [\n              9572.242287251327,\n              1385.965306297885\n            ]\n          ]\n        },\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"2015-08-20T09:37:34.183Z\",\n          \"arrival_datetime\": \"1971-05-28T01:32:13.489Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              3968.425684772817,\n              6807.648924168193\n            ],\n            [\n              9670.710081178273,\n              5506.0780090582875\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f9ee718d-3553-4800-bac6-3fd28baec51b",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journey",
+                    "from",
+                    ":from_coords",
+                    "to",
+                    "{{to_coords}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_is",
+                      "value": "Departing"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "from_coords",
+                      "description": "(Required) Origin coordinates as lat,lon or ATCO/CRS code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "b837ee60-a5a5-4c5c-8429-fff9fd55805a",
+      "name": "Places",
+      "description": {
+        "content": "Transport stops, stations, and points of interest",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "355f3d61-6ea7-4747-9f78-41847e35d153",
+          "name": "Search Transport Places",
+          "request": {
+            "name": "Search Transport Places",
+            "description": {
+              "content": "Finds bus stops, train stations, and other transport access points by name or geographic coordinates across Great Britain.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "places.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "Text search query for place name"
+                },
+                {
+                  "disabled": false,
+                  "key": "lat",
+                  "value": "<float>",
+                  "description": "Latitude for proximity search"
+                },
+                {
+                  "disabled": false,
+                  "key": "lon",
+                  "value": "<float>",
+                  "description": "Longitude for proximity search"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "<string>",
+                  "description": "Filter by place type"
+                },
+                {
+                  "disabled": false,
+                  "key": "radius",
+                  "value": "1000",
+                  "description": "Search radius in meters"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "10",
+                  "description": "Maximum results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8b209b06-7881-4c94-be3d-d3ed8832365f",
+              "name": "Successful response with matching places",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_time\": \"1967-03-08T08:05:58.920Z\",\n  \"member\": [\n    {\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"latitude\": 3742.126731892046,\n      \"longitude\": 9803.289297701933,\n      \"atcocode\": \"string\",\n      \"station_code\": \"string\",\n      \"description\": \"string\",\n      \"distance\": 1747.2979029437663\n    },\n    {\n      \"type\": \"string\",\n      \"name\": \"string\",\n      \"latitude\": 1626.5274961518871,\n      \"longitude\": 8679.05020051477,\n      \"atcocode\": \"string\",\n      \"station_code\": \"string\",\n      \"description\": \"string\",\n      \"distance\": 6618.21316918159\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7649e29d-3d28-4cf2-a4f9-f72d9b542ac2",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "places.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "lat",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "lon",
+                      "value": "<float>"
+                    },
+                    {
+                      "key": "type",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "radius",
+                      "value": "1000"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "10"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8e9308c8-5c81-4a41-8b4a-746ef60bebe7",
+      "name": "Bus Performance",
+      "description": {
+        "content": "Bus fleet performance analytics and punctuality metrics",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    },
+    {
+      "id": "1a2e9ff2-1614-4b7f-b4e8-e572956252b4",
+      "name": "Rail Performance",
+      "description": {
+        "content": "Rail service performance and delay analytics",
+        "type": "text/plain"
+      },
+      "item": [],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://transportapi.com/v3/uk",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Destination coordinates as lat,lon or ATCO/CRS code",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "to_coords"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-App-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "340c3ddf-d993-4f65-83e9-c064781e7e72",
+    "name": "TransportAPI",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.\n\nContact Support:\n Name: TransportAPI Support",
+      "type": "text/plain"
+    }
+  }
+}

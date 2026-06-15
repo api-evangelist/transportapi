@@ -1,0 +1,393 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "TransportAPI",
+    "version": "v3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-App-Id",
+      "value": "{{X-App-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bus Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bus Stop Live Departures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/bus/stop/:atcocode/live.json",
+            "params": [
+              {
+                "name": "atcocode",
+                "value": "",
+                "type": "path",
+                "description": "The ATCO code of the bus stop"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "How to group departures in the response"
+              },
+              {
+                "name": "nextbuses",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include real-time next bus predictions"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of departures to return"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Application ID for authentication"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query",
+                "description": "Application key for authentication"
+              }
+            ]
+          },
+          "docs": "Returns real-time departure information for buses at a specific stop, identified by its ATCO code."
+        },
+        {
+          "info": {
+            "name": "Get Bus Stop Timetable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/bus/stop/:atcocode/timetable.json",
+            "params": [
+              {
+                "name": "atcocode",
+                "value": "",
+                "type": "path",
+                "description": "The ATCO code of the bus stop"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date for timetable (YYYY-MM-DD, defaults to today)"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns scheduled timetable for buses at a specific stop."
+        },
+        {
+          "info": {
+            "name": "Get Bus Route Timetable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/bus/route/:operator/:line/:direction/:atcocode/:date/timetable.json",
+            "params": [
+              {
+                "name": "operator",
+                "value": "",
+                "type": "path",
+                "description": "Bus operator code"
+              },
+              {
+                "name": "line",
+                "value": "",
+                "type": "path",
+                "description": "Bus line/route number"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "path",
+                "description": "Direction of travel"
+              },
+              {
+                "name": "atcocode",
+                "value": "",
+                "type": "path",
+                "description": "Starting stop ATCO code"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date for timetable (YYYY-MM-DD)"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the complete timetable for a specific bus route, including all stops and scheduled times."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Rail Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Train Station Live Departures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/train/station/:station_code/live.json",
+            "params": [
+              {
+                "name": "station_code",
+                "value": "",
+                "type": "path",
+                "description": "The CRS (Computer Reservation System) station code"
+              },
+              {
+                "name": "train_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by train status"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of trains to include"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns real-time departure and arrival information for trains at a specific station, including live status and calling points."
+        },
+        {
+          "info": {
+            "name": "Get Train Station Timetable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/train/station/:station_code/:date/:time/timetable.json",
+            "params": [
+              {
+                "name": "station_code",
+                "value": "",
+                "type": "path",
+                "description": "The CRS station code"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date for timetable (YYYY-MM-DD)"
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "path",
+                "description": "Time in HH:MM format"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns scheduled timetable for trains at a specific station on a given date and time."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Places",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Search Transport Places",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/places.json",
+            "params": [
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Text search query for place name"
+              },
+              {
+                "name": "lat",
+                "value": "",
+                "type": "query",
+                "description": "Latitude for proximity search"
+              },
+              {
+                "name": "lon",
+                "value": "",
+                "type": "query",
+                "description": "Longitude for proximity search"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter by place type"
+              },
+              {
+                "name": "radius",
+                "value": "",
+                "type": "query",
+                "description": "Search radius in meters"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum results to return"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Finds bus stops, train stations, and other transport access points by name or geographic coordinates across Great Britain."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Journey Planner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Plan Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/journey/from/:from_coords/to/:to_coords.json",
+            "params": [
+              {
+                "name": "from_coords",
+                "value": "",
+                "type": "path",
+                "description": "Origin coordinates as lat,lon or ATCO/CRS code"
+              },
+              {
+                "name": "to_coords",
+                "value": "",
+                "type": "path",
+                "description": "Destination coordinates as lat,lon or ATCO/CRS code"
+              },
+              {
+                "name": "service",
+                "value": "",
+                "type": "query",
+                "description": "Journey planning service/engine to use"
+              },
+              {
+                "name": "modes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated transport modes to include"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Journey date (YYYY-MM-DD)"
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Journey time (HH:MM)"
+              },
+              {
+                "name": "time_is",
+                "value": "",
+                "type": "query",
+                "description": "Whether time is departure or arrival"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Plans a multimodal journey from origin to destination across Great Britain, supporting bus, train, metro, coach, tram, light rail, cycle, car, ferry, and taxi modes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
