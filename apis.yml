@@ -49,7 +49,7 @@ apis:
         url: rules/transportapi-rules.yml
       - type: Vocabulary
         url: vocabulary/transportapi-vocabulary.yml
-      - type: SignUp
+      - type: Signup
         url: https://developer.transportapi.com/
     x-services:
       - TAPI Journey Planner
@@ -71,7 +71,7 @@ common:
     url: https://www.transportapi.com/
   - type: Documentation
     url: https://developer.transportapi.com/
-  - type: SignUp
+  - type: Signup
     url: https://developer.transportapi.com/
   - type: GitHub
     url: https://github.com/transportapi
