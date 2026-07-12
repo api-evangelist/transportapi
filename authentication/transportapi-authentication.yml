@@ -1,0 +1,23 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/transportapi-openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+schemes:
+- name: AppIdAuth
+  type: apiKey
+  in: header
+  parameter: X-App-Id
+  description: Application ID header
+  sources:
+  - openapi/transportapi-openapi.yml
+- name: AppKeyAuth
+  type: apiKey
+  in: header
+  parameter: X-App-Key
+  description: Application key header
+  sources:
+  - openapi/transportapi-openapi.yml

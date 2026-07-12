@@ -65,6 +65,10 @@ apis:
       free: 30 hits per day forever
       paid: Higher allowance tiers via subscription
 common:
+  - type: DomainSecurity
+    url: security/transportapi-domain-security.yml
+  - type: Authentication
+    url: authentication/transportapi-authentication.yml
   - type: LinkedIn
     url: https://www.linkedin.com/company/transportapi
   - type: Website
@@ -75,6 +79,8 @@ common:
     url: https://developer.transportapi.com/
   - type: GitHub
     url: https://github.com/transportapi
+  - url: https://www.transportapi.com/blog/
+    type: Blog
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
