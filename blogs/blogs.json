@@ -1,0 +1,14 @@
+{
+  "repo": "transportapi",
+  "feeds": [
+    {
+      "source": "https://www.transportapi.com/blog/",
+      "feed_url": "https://www.transportapi.com/blog/index.xml",
+      "title": "",
+      "saved": 1,
+      "method": "discovered"
+    }
+  ],
+  "fetched": "2026-07-11T11:50:51Z",
+  "post_count": 26
+}
