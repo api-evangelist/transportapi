@@ -65,6 +65,8 @@ apis:
       free: 30 hits per day forever
       paid: Higher allowance tiers via subscription
 common:
+  - type: AgenticAccess
+    url: agentic-access/transportapi-agentic-access.yml
   - type: DomainSecurity
     url: security/transportapi-domain-security.yml
   - type: Authentication
