@@ -1,0 +1,203 @@
+openapi: 3.0.3
+info:
+  title: Transport Bus Information Rail Information API
+  description: TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.
+  version: v3.0.0
+  contact:
+    name: TransportAPI Support
+    url: https://www.transportapi.com/contact/
+  x-logo:
+    url: https://www.transportapi.com/logo.png
+servers:
+- url: https://transportapi.com/v3/uk
+  description: TransportAPI UK Production Server
+security:
+- AppIdAuth: []
+tags:
+- name: Rail Information
+  description: Real-time and scheduled rail departure and arrival data
+paths:
+  /train/station/{station_code}/live.json:
+    get:
+      operationId: getTrainStationLiveDepartures
+      summary: Get Train Station Live Departures
+      description: Returns real-time departure and arrival information for trains at a specific station, including live status and calling points.
+      tags:
+      - Rail Information
+      parameters:
+      - name: station_code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The CRS (Computer Reservation System) station code
+      - name: train_status
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - passenger
+          - all
+          default: passenger
+        description: Filter by train status
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - arrival
+          - departure
+          - pass
+          default: departure
+        description: Type of trains to include
+      - name: app_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: app_key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with live train departures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainLiveDeparturesResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+        '404':
+          description: Station not found
+  /train/station/{station_code}/{date}/{time}/timetable.json:
+    get:
+      operationId: getTrainStationTimetable
+      summary: Get Train Station Timetable
+      description: Returns scheduled timetable for trains at a specific station on a given date and time.
+      tags:
+      - Rail Information
+      parameters:
+      - name: station_code
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The CRS station code
+      - name: date
+        in: path
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Date for timetable (YYYY-MM-DD)
+      - name: time
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Time in HH:MM format
+      - name: app_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: app_key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with train timetable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainTimetableResponse'
+components:
+  schemas:
+    TrainDeparture:
+      type: object
+      properties:
+        mode:
+          type: string
+        service:
+          type: string
+        train_uid:
+          type: string
+        platform:
+          type: string
+        operator:
+          type: string
+        operator_name:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
+        best_departure_estimate_mins:
+          type: integer
+        status:
+          type: string
+        origin_name:
+          type: string
+        destination_name:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallingPoint'
+    CallingPoint:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
+    TrainLiveDeparturesResponse:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: object
+          properties:
+            all:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrainDeparture'
+    TrainTimetableResponse:
+      type: object
+      properties:
+        station_code:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainDeparture'
+  securitySchemes:
+    AppIdAuth:
+      type: apiKey
+      in: header
+      name: X-App-Id
+      description: Application ID header
+    AppKeyAuth:
+      type: apiKey
+      in: header
+      name: X-App-Key
+      description: Application key header

@@ -1,0 +1,136 @@
+openapi: 3.0.3
+info:
+  title: Transport Bus Information Places API
+  description: TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.
+  version: v3.0.0
+  contact:
+    name: TransportAPI Support
+    url: https://www.transportapi.com/contact/
+  x-logo:
+    url: https://www.transportapi.com/logo.png
+servers:
+- url: https://transportapi.com/v3/uk
+  description: TransportAPI UK Production Server
+security:
+- AppIdAuth: []
+tags:
+- name: Places
+  description: Transport stops, stations, and points of interest
+paths:
+  /places.json:
+    get:
+      operationId: searchPlaces
+      summary: Search Transport Places
+      description: Finds bus stops, train stations, and other transport access points by name or geographic coordinates across Great Britain.
+      tags:
+      - Places
+      parameters:
+      - name: query
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Text search query for place name
+      - name: lat
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+        description: Latitude for proximity search
+      - name: lon
+        in: query
+        required: false
+        schema:
+          type: number
+          format: float
+        description: Longitude for proximity search
+      - name: type
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - bus_stop
+          - train_station
+          - tram_stop
+          - ferry_terminal
+          - airport
+        description: Filter by place type
+      - name: radius
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 1000
+        description: Search radius in meters
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 10
+        description: Maximum results to return
+      - name: app_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: app_key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with matching places
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlacesResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+components:
+  schemas:
+    PlacesResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        member:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
+    Place:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        atcocode:
+          type: string
+        station_code:
+          type: string
+        description:
+          type: string
+        distance:
+          type: number
+  securitySchemes:
+    AppIdAuth:
+      type: apiKey
+      in: header
+      name: X-App-Id
+      description: Application ID header
+    AppKeyAuth:
+      type: apiKey
+      in: header
+      name: X-App-Key
+      description: Application key header

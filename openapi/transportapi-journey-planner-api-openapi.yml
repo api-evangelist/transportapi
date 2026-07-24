@@ -1,0 +1,161 @@
+openapi: 3.0.3
+info:
+  title: Transport Bus Information Journey Planner API
+  description: TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.
+  version: v3.0.0
+  contact:
+    name: TransportAPI Support
+    url: https://www.transportapi.com/contact/
+  x-logo:
+    url: https://www.transportapi.com/logo.png
+servers:
+- url: https://transportapi.com/v3/uk
+  description: TransportAPI UK Production Server
+security:
+- AppIdAuth: []
+tags:
+- name: Journey Planner
+  description: Multimodal journey planning across Great Britain
+paths:
+  /journey/from/{from_coords}/to/{to_coords}.json:
+    get:
+      operationId: planJourney
+      summary: Plan Journey
+      description: Plans a multimodal journey from origin to destination across Great Britain, supporting bus, train, metro, coach, tram, light rail, cycle, car, ferry, and taxi modes.
+      tags:
+      - Journey Planner
+      parameters:
+      - name: from_coords
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Origin coordinates as lat,lon or ATCO/CRS code
+      - name: to_coords
+        in: path
+        required: true
+        schema:
+          type: string
+        description: Destination coordinates as lat,lon or ATCO/CRS code
+      - name: service
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Journey planning service/engine to use
+      - name: modes
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated transport modes to include
+      - name: date
+        in: query
+        required: false
+        schema:
+          type: string
+          format: date
+        description: Journey date (YYYY-MM-DD)
+      - name: time
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Journey time (HH:MM)
+      - name: time_is
+        in: query
+        required: false
+        schema:
+          type: string
+          enum:
+          - Departing
+          - Arriving
+          default: Departing
+        description: Whether time is departure or arrival
+      - name: app_id
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: app_key
+        in: query
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Successful response with journey options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JourneyResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+components:
+  schemas:
+    JourneyRoute:
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: Journey duration in seconds
+        departure_datetime:
+          type: string
+          format: date-time
+        arrival_datetime:
+          type: string
+          format: date-time
+        route_parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutePart'
+    JourneyResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        source:
+          type: string
+        acknowledgements:
+          type: string
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyRoute'
+    RoutePart:
+      type: object
+      properties:
+        mode:
+          type: string
+        from_point_name:
+          type: string
+        to_point_name:
+          type: string
+        departure_datetime:
+          type: string
+          format: date-time
+        arrival_datetime:
+          type: string
+          format: date-time
+        line_name:
+          type: string
+        operator_name:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: number
+  securitySchemes:
+    AppIdAuth:
+      type: apiKey
+      in: header
+      name: X-App-Id
+      description: Application ID header
+    AppKeyAuth:
+      type: apiKey
+      in: header
+      name: X-App-Key
+      description: Application key header
