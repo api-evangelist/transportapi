@@ -1,0 +1,695 @@
+openapi: 3.0.3
+info:
+  title: TransportAPI
+  description: >-
+    TransportAPI is a managed data service provider for UK public transport,
+    offering real-time and scheduled bus, rail, and multimodal transport data.
+    The API provides journey planning, departure boards, performance analytics,
+    and places lookup across Great Britain.
+  version: v3.0.0
+  contact:
+    name: TransportAPI Support
+    url: https://www.transportapi.com/contact/
+  x-logo:
+    url: https://www.transportapi.com/logo.png
+servers:
+  - url: https://transportapi.com/v3/uk
+    description: TransportAPI UK Production Server
+security:
+  - AppIdAuth: []
+tags:
+  - name: Bus Information
+    description: Real-time and scheduled bus departure and arrival data
+  - name: Rail Information
+    description: Real-time and scheduled rail departure and arrival data
+  - name: Journey Planner
+    description: Multimodal journey planning across Great Britain
+  - name: Places
+    description: Transport stops, stations, and points of interest
+  - name: Bus Performance
+    description: Bus fleet performance analytics and punctuality metrics
+  - name: Rail Performance
+    description: Rail service performance and delay analytics
+paths:
+  /bus/stop/{atcocode}/live.json:
+    get:
+      operationId: getBusStopLiveDepartures
+      summary: Get Bus Stop Live Departures
+      description: >-
+        Returns real-time departure information for buses at a specific stop,
+        identified by its ATCO code.
+      tags:
+        - Bus Information
+      parameters:
+        - name: atcocode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ATCO code of the bus stop
+        - name: group
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['route', 'no']
+            default: 'route'
+          description: How to group departures in the response
+        - name: nextbuses
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['yes', 'no']
+            default: 'yes'
+          description: Whether to include real-time next bus predictions
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 5
+          description: Maximum number of departures to return
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Application ID for authentication
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Application key for authentication
+      responses:
+        '200':
+          description: Successful response with live bus departures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusLiveDeparturesResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+        '404':
+          description: Bus stop not found
+  /bus/stop/{atcocode}/timetable.json:
+    get:
+      operationId: getBusStopTimetable
+      summary: Get Bus Stop Timetable
+      description: >-
+        Returns scheduled timetable for buses at a specific stop.
+      tags:
+        - Bus Information
+      parameters:
+        - name: atcocode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ATCO code of the bus stop
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Date for timetable (YYYY-MM-DD, defaults to today)
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with bus timetable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusTimetableResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+  /bus/route/{operator}/{line}/{direction}/{atcocode}/{date}/timetable.json:
+    get:
+      operationId: getBusRouteTimetable
+      summary: Get Bus Route Timetable
+      description: >-
+        Returns the complete timetable for a specific bus route, including
+        all stops and scheduled times.
+      tags:
+        - Bus Information
+      parameters:
+        - name: operator
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Bus operator code
+        - name: line
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Bus line/route number
+        - name: direction
+          in: path
+          required: true
+          schema:
+            type: string
+            enum: [inbound, outbound]
+          description: Direction of travel
+        - name: atcocode
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Starting stop ATCO code
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Date for timetable (YYYY-MM-DD)
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with route timetable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BusRouteTimetableResponse'
+  /train/station/{station_code}/live.json:
+    get:
+      operationId: getTrainStationLiveDepartures
+      summary: Get Train Station Live Departures
+      description: >-
+        Returns real-time departure and arrival information for trains at a
+        specific station, including live status and calling points.
+      tags:
+        - Rail Information
+      parameters:
+        - name: station_code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The CRS (Computer Reservation System) station code
+        - name: train_status
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['passenger', 'all']
+            default: 'passenger'
+          description: Filter by train status
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['arrival', 'departure', 'pass']
+            default: 'departure'
+          description: Type of trains to include
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with live train departures
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainLiveDeparturesResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+        '404':
+          description: Station not found
+  /train/station/{station_code}/{date}/{time}/timetable.json:
+    get:
+      operationId: getTrainStationTimetable
+      summary: Get Train Station Timetable
+      description: >-
+        Returns scheduled timetable for trains at a specific station on a
+        given date and time.
+      tags:
+        - Rail Information
+      parameters:
+        - name: station_code
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The CRS station code
+        - name: date
+          in: path
+          required: true
+          schema:
+            type: string
+            format: date
+          description: Date for timetable (YYYY-MM-DD)
+        - name: time
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Time in HH:MM format
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with train timetable
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrainTimetableResponse'
+  /places.json:
+    get:
+      operationId: searchPlaces
+      summary: Search Transport Places
+      description: >-
+        Finds bus stops, train stations, and other transport access points
+        by name or geographic coordinates across Great Britain.
+      tags:
+        - Places
+      parameters:
+        - name: query
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Text search query for place name
+        - name: lat
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Latitude for proximity search
+        - name: lon
+          in: query
+          required: false
+          schema:
+            type: number
+            format: float
+          description: Longitude for proximity search
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [bus_stop, train_station, tram_stop, ferry_terminal, airport]
+          description: Filter by place type
+        - name: radius
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1000
+          description: Search radius in meters
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 10
+          description: Maximum results to return
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with matching places
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlacesResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+  /journey/from/{from_coords}/to/{to_coords}.json:
+    get:
+      operationId: planJourney
+      summary: Plan Journey
+      description: >-
+        Plans a multimodal journey from origin to destination across Great
+        Britain, supporting bus, train, metro, coach, tram, light rail, cycle,
+        car, ferry, and taxi modes.
+      tags:
+        - Journey Planner
+      parameters:
+        - name: from_coords
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Origin coordinates as lat,lon or ATCO/CRS code
+        - name: to_coords
+          in: path
+          required: true
+          schema:
+            type: string
+          description: Destination coordinates as lat,lon or ATCO/CRS code
+        - name: service
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Journey planning service/engine to use
+        - name: modes
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated transport modes to include
+        - name: date
+          in: query
+          required: false
+          schema:
+            type: string
+            format: date
+          description: Journey date (YYYY-MM-DD)
+        - name: time
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Journey time (HH:MM)
+        - name: time_is
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: [Departing, Arriving]
+            default: Departing
+          description: Whether time is departure or arrival
+        - name: app_id
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: app_key
+          in: query
+          required: false
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful response with journey options
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/JourneyResponse'
+        '401':
+          description: Unauthorized - invalid credentials
+components:
+  securitySchemes:
+    AppIdAuth:
+      type: apiKey
+      in: header
+      name: X-App-Id
+      description: Application ID header
+    AppKeyAuth:
+      type: apiKey
+      in: header
+      name: X-App-Key
+      description: Application key header
+  schemas:
+    BusLiveDeparturesResponse:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        bearing:
+          type: string
+        stop_name:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/BusDeparture'
+    BusDeparture:
+      type: object
+      properties:
+        mode:
+          type: string
+        line:
+          type: string
+        line_name:
+          type: string
+        direction:
+          type: string
+        operator:
+          type: string
+        operator_name:
+          type: string
+        date:
+          type: string
+        expected_departure_date:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
+        status:
+          type: object
+          properties:
+            live:
+              type: boolean
+            delay:
+              type: string
+    BusTimetableResponse:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        stop_name:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusDeparture'
+    BusRouteTimetableResponse:
+      type: object
+      properties:
+        operator:
+          type: string
+        line:
+          type: string
+        direction:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimetableStop'
+    TimetableStop:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        name:
+          type: string
+        times:
+          type: array
+          items:
+            type: string
+    TrainLiveDeparturesResponse:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: object
+          properties:
+            all:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrainDeparture'
+    TrainDeparture:
+      type: object
+      properties:
+        mode:
+          type: string
+        service:
+          type: string
+        train_uid:
+          type: string
+        platform:
+          type: string
+        operator:
+          type: string
+        operator_name:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
+        best_departure_estimate_mins:
+          type: integer
+        status:
+          type: string
+        origin_name:
+          type: string
+        destination_name:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/CallingPoint'
+    CallingPoint:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
+    TrainTimetableResponse:
+      type: object
+      properties:
+        station_code:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainDeparture'
+    PlacesResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        member:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
+    Place:
+      type: object
+      properties:
+        type:
+          type: string
+        name:
+          type: string
+        latitude:
+          type: number
+          format: float
+        longitude:
+          type: number
+          format: float
+        atcocode:
+          type: string
+        station_code:
+          type: string
+        description:
+          type: string
+        distance:
+          type: number
+    JourneyResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        source:
+          type: string
+        acknowledgements:
+          type: string
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyRoute'
+    JourneyRoute:
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: Journey duration in seconds
+        departure_datetime:
+          type: string
+          format: date-time
+        arrival_datetime:
+          type: string
+          format: date-time
+        route_parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutePart'
+    RoutePart:
+      type: object
+      properties:
+        mode:
+          type: string
+        from_point_name:
+          type: string
+        to_point_name:
+          type: string
+        departure_datetime:
+          type: string
+          format: date-time
+        arrival_datetime:
+          type: string
+          format: date-time
+        line_name:
+          type: string
+        operator_name:
+          type: string
+        coordinates:
+          type: array
+          items:
+            type: array
+            items:
+              type: number

@@ -1,0 +1,20 @@
+{
+  "provider": "transportapi",
+  "sources": [
+    "transportapi-bus-information-api-openapi.yml",
+    "transportapi-journey-planner-api-openapi.yml",
+    "transportapi-places-api-openapi.yml",
+    "transportapi-rail-information-api-openapi.yml"
+  ],
+  "outputs": [
+    "transportapi-bus-information-api-openapi.yml",
+    "transportapi-journey-planner-api-openapi.yml",
+    "transportapi-places-api-openapi.yml",
+    "transportapi-rail-information-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
