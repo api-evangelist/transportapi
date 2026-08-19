@@ -32,7 +32,7 @@ tags:
 created: '2025-05-02'
 modified: '2026-05-19'
 url: https://raw.githubusercontent.com/api-evangelist/transportapi/refs/heads/main/apis.yml
-specificationVersion: '0.19'
+specificationVersion: '0.23'
 apis:
 - aid: transportapi:transportapi-bus-information-api
   name: TransportAPI Bus Information API
