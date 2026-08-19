@@ -1,0 +1,311 @@
+{
+  "item": [
+    {
+      "id": "88c7ceb9-d45a-477a-8c6e-140693209a45",
+      "name": "Journey Planner",
+      "description": {
+        "content": "Multimodal journey planning across Great Britain",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f985d996-b96f-45b8-ab00-e0d54265d76d",
+          "name": "Plan Journey",
+          "request": {
+            "name": "Plan Journey",
+            "description": {
+              "content": "Plans a multimodal journey from origin to destination across Great Britain, supporting bus, train, metro, coach, tram, light rail, cycle, car, ferry, and taxi modes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "journey",
+                "from",
+                ":from_coords",
+                "to",
+                "{{to_coords}}.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "service",
+                  "value": "<string>",
+                  "description": "Journey planning service/engine to use"
+                },
+                {
+                  "disabled": false,
+                  "key": "modes",
+                  "value": "<string>",
+                  "description": "Comma-separated transport modes to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Journey date (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "key": "time",
+                  "value": "<string>",
+                  "description": "Journey time (HH:MM)"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_is",
+                  "value": "Departing",
+                  "description": "Whether time is departure or arrival"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "from_coords",
+                  "description": "(Required) Origin coordinates as lat,lon or ATCO/CRS code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "796bc597-c66b-45a9-9b76-f016238b5e00",
+              "name": "Successful response with journey options",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journey",
+                    "from",
+                    ":from_coords",
+                    "to",
+                    "{{to_coords}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_is",
+                      "value": "Departing"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "from_coords",
+                      "description": "(Required) Origin coordinates as lat,lon or ATCO/CRS code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"request_time\": \"2010-05-12T12:07:28.445Z\",\n  \"source\": \"string\",\n  \"acknowledgements\": \"string\",\n  \"routes\": [\n    {\n      \"duration\": 8514,\n      \"departure_datetime\": \"1948-12-29T18:29:02.479Z\",\n      \"arrival_datetime\": \"2004-08-02T04:49:48.712Z\",\n      \"route_parts\": [\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"1978-06-13T05:07:34.938Z\",\n          \"arrival_datetime\": \"1995-02-13T21:45:41.646Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              6294.107296711114,\n              4858.062175315763\n            ],\n            [\n              1300.2088069459394,\n              6681.154587060023\n            ]\n          ]\n        },\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"1966-05-22T02:39:19.523Z\",\n          \"arrival_datetime\": \"2022-09-30T05:02:37.902Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              8942.594290480398,\n              8756.334555677346\n            ],\n            [\n              4673.654460406463,\n              1217.8965922987295\n            ]\n          ]\n        }\n      ]\n    },\n    {\n      \"duration\": 1418,\n      \"departure_datetime\": \"1998-02-11T05:54:22.287Z\",\n      \"arrival_datetime\": \"1971-01-30T03:11:03.654Z\",\n      \"route_parts\": [\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"2022-01-21T14:30:09.914Z\",\n          \"arrival_datetime\": \"2014-05-15T04:43:45.642Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              2088.5850776640536,\n              7346.381266144482\n            ],\n            [\n              7540.835023159732,\n              5687.7077581311205\n            ]\n          ]\n        },\n        {\n          \"mode\": \"string\",\n          \"from_point_name\": \"string\",\n          \"to_point_name\": \"string\",\n          \"departure_datetime\": \"1995-10-16T05:57:39.893Z\",\n          \"arrival_datetime\": \"1959-01-11T01:09:53.853Z\",\n          \"line_name\": \"string\",\n          \"operator_name\": \"string\",\n          \"coordinates\": [\n            [\n              1933.1529756939635,\n              8634.168561583774\n            ],\n            [\n              8481.699652793584,\n              3971.4746518362754\n            ]\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da45ec27-6b34-4e3d-a8ca-2553468140f4",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "journey",
+                    "from",
+                    ":from_coords",
+                    "to",
+                    "{{to_coords}}.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "service",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "modes",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "time",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "time_is",
+                      "value": "Departing"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "from_coords",
+                      "description": "(Required) Origin coordinates as lat,lon or ATCO/CRS code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://transportapi.com/v3/uk",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) Destination coordinates as lat,lon or ATCO/CRS code",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "to_coords"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-App-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "08b1d752-adbd-4dc3-9fff-b2948e8ce5d4",
+    "name": "Transport Bus Information Journey Planner API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.\n\nContact Support:\n Name: TransportAPI Support",
+      "type": "text/plain"
+    }
+  }
+}

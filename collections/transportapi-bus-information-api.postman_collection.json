@@ -1,0 +1,720 @@
+{
+  "item": [
+    {
+      "id": "7bf3fa5c-ece6-403b-8ef0-d24d7c4cadea",
+      "name": "Bus Information",
+      "description": {
+        "content": "Real-time and scheduled bus departure and arrival data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "888407c3-f5f1-4cbe-a72a-3e046229953a",
+          "name": "Get Bus Stop Live Departures",
+          "request": {
+            "name": "Get Bus Stop Live Departures",
+            "description": {
+              "content": "Returns real-time departure information for buses at a specific stop, identified by its ATCO code.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bus",
+                "stop",
+                ":atcocode",
+                "live.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "group",
+                  "value": "route",
+                  "description": "How to group departures in the response"
+                },
+                {
+                  "disabled": false,
+                  "key": "nextbuses",
+                  "value": "yes",
+                  "description": "Whether to include real-time next bus predictions"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "5",
+                  "description": "Maximum number of departures to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "Application ID for authentication"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>",
+                  "description": "Application key for authentication"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "atcocode",
+                  "description": "(Required) The ATCO code of the bus stop"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8403bae3-6966-4855-8724-0317c222e831",
+              "name": "Successful response with live bus departures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "route"
+                    },
+                    {
+                      "key": "nextbuses",
+                      "value": "yes"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"atcocode\": \"string\",\n  \"bearing\": \"string\",\n  \"stop_name\": \"string\",\n  \"request_time\": \"1959-04-22T02:30:21.205Z\",\n  \"departures\": {\n    \"key_0\": [\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      },\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      }\n    ],\n    \"key_1\": [\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": true,\n          \"delay\": \"string\"\n        }\n      },\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      }\n    ],\n    \"key_2\": [\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": false,\n          \"delay\": \"string\"\n        }\n      },\n      {\n        \"mode\": \"string\",\n        \"line\": \"string\",\n        \"line_name\": \"string\",\n        \"direction\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"date\": \"string\",\n        \"expected_departure_date\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"status\": {\n          \"live\": true,\n          \"delay\": \"string\"\n        }\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb79b7f0-4d32-4361-8b89-2757bd543412",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "route"
+                    },
+                    {
+                      "key": "nextbuses",
+                      "value": "yes"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "ff89d172-70f9-4690-a3ab-31ff2ddd353d",
+              "name": "Bus stop not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "group",
+                      "value": "route"
+                    },
+                    {
+                      "key": "nextbuses",
+                      "value": "yes"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "5"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24f73459-e6e9-44c8-9971-7bafef4c7215",
+          "name": "Get Bus Stop Timetable",
+          "request": {
+            "name": "Get Bus Stop Timetable",
+            "description": {
+              "content": "Returns scheduled timetable for buses at a specific stop.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bus",
+                "stop",
+                ":atcocode",
+                "timetable.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "date",
+                  "value": "<date>",
+                  "description": "Date for timetable (YYYY-MM-DD, defaults to today)"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "atcocode",
+                  "description": "(Required) The ATCO code of the bus stop"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3c113383-62ae-45bd-8d1c-69f790ff3eb0",
+              "name": "Successful response with bus timetable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"atcocode\": \"string\",\n  \"stop_name\": \"string\",\n  \"request_time\": \"1973-06-17T19:37:36.216Z\",\n  \"departures\": [\n    {\n      \"mode\": \"string\",\n      \"line\": \"string\",\n      \"line_name\": \"string\",\n      \"direction\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"date\": \"string\",\n      \"expected_departure_date\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"status\": {\n        \"live\": true,\n        \"delay\": \"string\"\n      }\n    },\n    {\n      \"mode\": \"string\",\n      \"line\": \"string\",\n      \"line_name\": \"string\",\n      \"direction\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"date\": \"string\",\n      \"expected_departure_date\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"status\": {\n        \"live\": false,\n        \"delay\": \"string\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f1f5c99b-3904-4569-babf-afe8471bd67b",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "stop",
+                    ":atcocode",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "date",
+                      "value": "<date>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) The ATCO code of the bus stop"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a53a6c85-f72c-4cda-a103-a1d4e140cb81",
+          "name": "Get Bus Route Timetable",
+          "request": {
+            "name": "Get Bus Route Timetable",
+            "description": {
+              "content": "Returns the complete timetable for a specific bus route, including all stops and scheduled times.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "bus",
+                "route",
+                ":operator",
+                ":line",
+                ":direction",
+                ":atcocode",
+                ":date",
+                "timetable.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "operator",
+                  "description": "(Required) Bus operator code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "line",
+                  "description": "(Required) Bus line/route number"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "direction",
+                  "description": "(Required) Direction of travel"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "atcocode",
+                  "description": "(Required) Starting stop ATCO code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b35faf15-5673-4dcd-aa2a-aa88c3585745",
+              "name": "Successful response with route timetable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "bus",
+                    "route",
+                    ":operator",
+                    ":line",
+                    ":direction",
+                    ":atcocode",
+                    ":date",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "operator",
+                      "description": "(Required) Bus operator code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "line",
+                      "description": "(Required) Bus line/route number"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "direction",
+                      "description": "(Required) Direction of travel"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "atcocode",
+                      "description": "(Required) Starting stop ATCO code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"operator\": \"string\",\n  \"line\": \"string\",\n  \"direction\": \"string\",\n  \"stops\": [\n    {\n      \"atcocode\": \"string\",\n      \"name\": \"string\",\n      \"times\": [\n        \"string\",\n        \"string\"\n      ]\n    },\n    {\n      \"atcocode\": \"string\",\n      \"name\": \"string\",\n      \"times\": [\n        \"string\",\n        \"string\"\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://transportapi.com/v3/uk",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-App-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "d8812fa0-4766-4d2b-9e05-7008a0e9fed4",
+    "name": "Transport Bus Information API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.\n\nContact Support:\n Name: TransportAPI Support",
+      "type": "text/plain"
+    }
+  }
+}

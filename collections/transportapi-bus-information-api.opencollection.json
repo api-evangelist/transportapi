@@ -1,0 +1,163 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transport Bus Information API",
+    "version": "v3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-App-Id",
+      "value": "{{X-App-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Bus Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Bus Stop Live Departures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/bus/stop/:atcocode/live.json",
+            "params": [
+              {
+                "name": "atcocode",
+                "value": "",
+                "type": "path",
+                "description": "The ATCO code of the bus stop"
+              },
+              {
+                "name": "group",
+                "value": "",
+                "type": "query",
+                "description": "How to group departures in the response"
+              },
+              {
+                "name": "nextbuses",
+                "value": "",
+                "type": "query",
+                "description": "Whether to include real-time next bus predictions"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of departures to return"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Application ID for authentication"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query",
+                "description": "Application key for authentication"
+              }
+            ]
+          },
+          "docs": "Returns real-time departure information for buses at a specific stop, identified by its ATCO code."
+        },
+        {
+          "info": {
+            "name": "Get Bus Stop Timetable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/bus/stop/:atcocode/timetable.json",
+            "params": [
+              {
+                "name": "atcocode",
+                "value": "",
+                "type": "path",
+                "description": "The ATCO code of the bus stop"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Date for timetable (YYYY-MM-DD, defaults to today)"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns scheduled timetable for buses at a specific stop."
+        },
+        {
+          "info": {
+            "name": "Get Bus Route Timetable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/bus/route/:operator/:line/:direction/:atcocode/:date/timetable.json",
+            "params": [
+              {
+                "name": "operator",
+                "value": "",
+                "type": "path",
+                "description": "Bus operator code"
+              },
+              {
+                "name": "line",
+                "value": "",
+                "type": "path",
+                "description": "Bus line/route number"
+              },
+              {
+                "name": "direction",
+                "value": "",
+                "type": "path",
+                "description": "Direction of travel"
+              },
+              {
+                "name": "atcocode",
+                "value": "",
+                "type": "path",
+                "description": "Starting stop ATCO code"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date for timetable (YYYY-MM-DD)"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns the complete timetable for a specific bus route, including all stops and scheduled times."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

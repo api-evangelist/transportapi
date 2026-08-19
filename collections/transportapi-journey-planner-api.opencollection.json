@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transport Bus Information Journey Planner API",
+    "version": "v3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-App-Id",
+      "value": "{{X-App-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Journey Planner",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Plan Journey",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/journey/from/:from_coords/to/:to_coords.json",
+            "params": [
+              {
+                "name": "from_coords",
+                "value": "",
+                "type": "path",
+                "description": "Origin coordinates as lat,lon or ATCO/CRS code"
+              },
+              {
+                "name": "to_coords",
+                "value": "",
+                "type": "path",
+                "description": "Destination coordinates as lat,lon or ATCO/CRS code"
+              },
+              {
+                "name": "service",
+                "value": "",
+                "type": "query",
+                "description": "Journey planning service/engine to use"
+              },
+              {
+                "name": "modes",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated transport modes to include"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "query",
+                "description": "Journey date (YYYY-MM-DD)"
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "query",
+                "description": "Journey time (HH:MM)"
+              },
+              {
+                "name": "time_is",
+                "value": "",
+                "type": "query",
+                "description": "Whether time is departure or arrival"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Plans a multimodal journey from origin to destination across Great Britain, supporting bus, train, metro, coach, tram, light rail, cycle, car, ferry, and taxi modes."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

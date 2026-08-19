@@ -1,0 +1,108 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Transport Bus Information Rail Information API",
+    "version": "v3.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-App-Id",
+      "value": "{{X-App-Id}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Rail Information",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Train Station Live Departures",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/train/station/:station_code/live.json",
+            "params": [
+              {
+                "name": "station_code",
+                "value": "",
+                "type": "path",
+                "description": "The CRS (Computer Reservation System) station code"
+              },
+              {
+                "name": "train_status",
+                "value": "",
+                "type": "query",
+                "description": "Filter by train status"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Type of trains to include"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns real-time departure and arrival information for trains at a specific station, including live status and calling points."
+        },
+        {
+          "info": {
+            "name": "Get Train Station Timetable",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://transportapi.com/v3/uk/train/station/:station_code/:date/:time/timetable.json",
+            "params": [
+              {
+                "name": "station_code",
+                "value": "",
+                "type": "path",
+                "description": "The CRS station code"
+              },
+              {
+                "name": "date",
+                "value": "",
+                "type": "path",
+                "description": "Date for timetable (YYYY-MM-DD)"
+              },
+              {
+                "name": "time",
+                "value": "",
+                "type": "path",
+                "description": "Time in HH:MM format"
+              },
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query"
+              },
+              {
+                "name": "app_key",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Returns scheduled timetable for trains at a specific station on a given date and time."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

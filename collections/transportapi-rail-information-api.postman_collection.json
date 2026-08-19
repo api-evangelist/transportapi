@@ -1,0 +1,475 @@
+{
+  "item": [
+    {
+      "id": "d09ee9a2-15f0-4585-bbb8-1d06f1176657",
+      "name": "Rail Information",
+      "description": {
+        "content": "Real-time and scheduled rail departure and arrival data",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a127443-4a18-4eff-980b-c3b7698e983d",
+          "name": "Get Train Station Live Departures",
+          "request": {
+            "name": "Get Train Station Live Departures",
+            "description": {
+              "content": "Returns real-time departure and arrival information for trains at a specific station, including live status and calling points.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "train",
+                "station",
+                ":station_code",
+                "live.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "train_status",
+                  "value": "passenger",
+                  "description": "Filter by train status"
+                },
+                {
+                  "disabled": false,
+                  "key": "type",
+                  "value": "departure",
+                  "description": "Type of trains to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "station_code",
+                  "description": "(Required) The CRS (Computer Reservation System) station code"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "edd39e4f-0205-4e6d-97a6-e72c45410583",
+              "name": "Successful response with live train departures",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "train_status",
+                      "value": "passenger"
+                    },
+                    {
+                      "key": "type",
+                      "value": "departure"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS (Computer Reservation System) station code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"station_code\": \"string\",\n  \"station_name\": \"string\",\n  \"request_time\": \"1954-10-18T07:25:12.583Z\",\n  \"departures\": {\n    \"all\": [\n      {\n        \"mode\": \"string\",\n        \"service\": \"string\",\n        \"train_uid\": \"string\",\n        \"platform\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"best_departure_estimate_mins\": 2737,\n        \"status\": \"string\",\n        \"origin_name\": \"string\",\n        \"destination_name\": \"string\",\n        \"stops\": [\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          },\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          }\n        ]\n      },\n      {\n        \"mode\": \"string\",\n        \"service\": \"string\",\n        \"train_uid\": \"string\",\n        \"platform\": \"string\",\n        \"operator\": \"string\",\n        \"operator_name\": \"string\",\n        \"aimed_departure_time\": \"string\",\n        \"expected_departure_time\": \"string\",\n        \"best_departure_estimate_mins\": 4205,\n        \"status\": \"string\",\n        \"origin_name\": \"string\",\n        \"destination_name\": \"string\",\n        \"stops\": [\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          },\n          {\n            \"station_code\": \"string\",\n            \"station_name\": \"string\",\n            \"aimed_departure_time\": \"string\",\n            \"expected_departure_time\": \"string\"\n          }\n        ]\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f131f66-2deb-4d1a-b48e-84ccba36caed",
+              "name": "Unauthorized - invalid credentials",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "train_status",
+                      "value": "passenger"
+                    },
+                    {
+                      "key": "type",
+                      "value": "departure"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS (Computer Reservation System) station code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d87a3dea-0388-4b66-8d77-4f3bff31128c",
+              "name": "Station not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    "live.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "train_status",
+                      "value": "passenger"
+                    },
+                    {
+                      "key": "type",
+                      "value": "departure"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS (Computer Reservation System) station code"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b95619d5-0692-45d3-bd37-490efa20ec7f",
+          "name": "Get Train Station Timetable",
+          "request": {
+            "name": "Get Train Station Timetable",
+            "description": {
+              "content": "Returns scheduled timetable for trains at a specific station on a given date and time.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "train",
+                "station",
+                ":station_code",
+                ":date",
+                ":time",
+                "timetable.json"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_key",
+                  "value": "<string>"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "station_code",
+                  "description": "(Required) The CRS station code"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<date>",
+                  "key": "date",
+                  "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "time",
+                  "description": "(Required) Time in HH:MM format"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5404909f-d553-4594-ab28-c018ac2efd41",
+              "name": "Successful response with train timetable",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "train",
+                    "station",
+                    ":station_code",
+                    ":date",
+                    ":time",
+                    "timetable.json"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_key",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "station_code",
+                      "description": "(Required) The CRS station code"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<date>",
+                      "key": "date",
+                      "description": "(Required) Date for timetable (YYYY-MM-DD)"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "time",
+                      "description": "(Required) Time in HH:MM format"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-App-Id",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"station_code\": \"string\",\n  \"request_time\": \"1988-02-01T04:07:58.105Z\",\n  \"departures\": [\n    {\n      \"mode\": \"string\",\n      \"service\": \"string\",\n      \"train_uid\": \"string\",\n      \"platform\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"best_departure_estimate_mins\": 3310,\n      \"status\": \"string\",\n      \"origin_name\": \"string\",\n      \"destination_name\": \"string\",\n      \"stops\": [\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        },\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        }\n      ]\n    },\n    {\n      \"mode\": \"string\",\n      \"service\": \"string\",\n      \"train_uid\": \"string\",\n      \"platform\": \"string\",\n      \"operator\": \"string\",\n      \"operator_name\": \"string\",\n      \"aimed_departure_time\": \"string\",\n      \"expected_departure_time\": \"string\",\n      \"best_departure_estimate_mins\": 3857,\n      \"status\": \"string\",\n      \"origin_name\": \"string\",\n      \"destination_name\": \"string\",\n      \"stops\": [\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        },\n        {\n          \"station_code\": \"string\",\n          \"station_name\": \"string\",\n          \"aimed_departure_time\": \"string\",\n          \"expected_departure_time\": \"string\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://transportapi.com/v3/uk",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-App-Id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "54011d15-c929-4817-82a9-45f80c06aa00",
+    "name": "Transport Bus Information Rail Information API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.\n\nContact Support:\n Name: TransportAPI Support",
+      "type": "text/plain"
+    }
+  }
+}
