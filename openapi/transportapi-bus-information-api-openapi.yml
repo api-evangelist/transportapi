@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: Transport Bus Information API
   description: TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.
@@ -182,6 +182,20 @@ paths:
                 $ref: '#/components/schemas/BusRouteTimetableResponse'
 components:
   schemas:
+    BusTimetableResponse:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        stop_name:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: array
+          items:
+            $ref: '#/components/schemas/BusDeparture'
     BusLiveDeparturesResponse:
       type: object
       properties:
@@ -200,44 +214,6 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/BusDeparture'
-    BusRouteTimetableResponse:
-      type: object
-      properties:
-        operator:
-          type: string
-        line:
-          type: string
-        direction:
-          type: string
-        stops:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimetableStop'
-    BusTimetableResponse:
-      type: object
-      properties:
-        atcocode:
-          type: string
-        stop_name:
-          type: string
-        request_time:
-          type: string
-          format: date-time
-        departures:
-          type: array
-          items:
-            $ref: '#/components/schemas/BusDeparture'
-    TimetableStop:
-      type: object
-      properties:
-        atcocode:
-          type: string
-        name:
-          type: string
-        times:
-          type: array
-          items:
-            type: string
     BusDeparture:
       type: object
       properties:
@@ -268,6 +244,30 @@ components:
               type: boolean
             delay:
               type: string
+    BusRouteTimetableResponse:
+      type: object
+      properties:
+        operator:
+          type: string
+        line:
+          type: string
+        direction:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimetableStop'
+    TimetableStop:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        name:
+          type: string
+        times:
+          type: array
+          items:
+            type: string
   securitySchemes:
     AppIdAuth:
       type: apiKey

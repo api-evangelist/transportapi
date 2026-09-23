@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Transport Bus Information Places API
+  title: Transport Places API
   description: TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data. The API provides journey planning, departure boards, performance analytics, and places lookup across Great Britain.
   version: v3.0.0
   contact:
@@ -92,16 +92,6 @@ paths:
           description: Unauthorized - invalid credentials
 components:
   schemas:
-    PlacesResponse:
-      type: object
-      properties:
-        request_time:
-          type: string
-          format: date-time
-        member:
-          type: array
-          items:
-            $ref: '#/components/schemas/Place'
     Place:
       type: object
       properties:
@@ -123,6 +113,16 @@ components:
           type: string
         distance:
           type: number
+    PlacesResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        member:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
   securitySchemes:
     AppIdAuth:
       type: apiKey
