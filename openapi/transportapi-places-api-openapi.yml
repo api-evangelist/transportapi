@@ -92,6 +92,16 @@ paths:
           description: Unauthorized - invalid credentials
 components:
   schemas:
+    PlacesResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        member:
+          type: array
+          items:
+            $ref: '#/components/schemas/Place'
     Place:
       type: object
       properties:
@@ -113,16 +123,6 @@ components:
           type: string
         distance:
           type: number
-    PlacesResponse:
-      type: object
-      properties:
-        request_time:
-          type: string
-          format: date-time
-        member:
-          type: array
-          items:
-            $ref: '#/components/schemas/Place'
   securitySchemes:
     AppIdAuth:
       type: apiKey
