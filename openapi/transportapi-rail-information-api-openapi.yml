@@ -131,6 +131,17 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/TrainDeparture'
+    CallingPoint:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
     TrainLiveDeparturesResponse:
       type: object
       properties:
@@ -179,17 +190,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CallingPoint'
-    CallingPoint:
-      type: object
-      properties:
-        station_code:
-          type: string
-        station_name:
-          type: string
-        aimed_departure_time:
-          type: string
-        expected_departure_time:
-          type: string
   securitySchemes:
     AppIdAuth:
       type: apiKey
