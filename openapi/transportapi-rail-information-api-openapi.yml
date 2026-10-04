@@ -119,46 +119,6 @@ paths:
                 $ref: '#/components/schemas/TrainTimetableResponse'
 components:
   schemas:
-    TrainTimetableResponse:
-      type: object
-      properties:
-        station_code:
-          type: string
-        request_time:
-          type: string
-          format: date-time
-        departures:
-          type: array
-          items:
-            $ref: '#/components/schemas/TrainDeparture'
-    CallingPoint:
-      type: object
-      properties:
-        station_code:
-          type: string
-        station_name:
-          type: string
-        aimed_departure_time:
-          type: string
-        expected_departure_time:
-          type: string
-    TrainLiveDeparturesResponse:
-      type: object
-      properties:
-        station_code:
-          type: string
-        station_name:
-          type: string
-        request_time:
-          type: string
-          format: date-time
-        departures:
-          type: object
-          properties:
-            all:
-              type: array
-              items:
-                $ref: '#/components/schemas/TrainDeparture'
     TrainDeparture:
       type: object
       properties:
@@ -190,6 +150,46 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CallingPoint'
+    CallingPoint:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        aimed_departure_time:
+          type: string
+        expected_departure_time:
+          type: string
+    TrainTimetableResponse:
+      type: object
+      properties:
+        station_code:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrainDeparture'
+    TrainLiveDeparturesResponse:
+      type: object
+      properties:
+        station_code:
+          type: string
+        station_name:
+          type: string
+        request_time:
+          type: string
+          format: date-time
+        departures:
+          type: object
+          properties:
+            all:
+              type: array
+              items:
+                $ref: '#/components/schemas/TrainDeparture'
   securitySchemes:
     AppIdAuth:
       type: apiKey

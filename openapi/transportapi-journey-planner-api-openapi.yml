@@ -93,36 +93,6 @@ paths:
           description: Unauthorized - invalid credentials
 components:
   schemas:
-    JourneyResponse:
-      type: object
-      properties:
-        request_time:
-          type: string
-          format: date-time
-        source:
-          type: string
-        acknowledgements:
-          type: string
-        routes:
-          type: array
-          items:
-            $ref: '#/components/schemas/JourneyRoute'
-    JourneyRoute:
-      type: object
-      properties:
-        duration:
-          type: integer
-          description: Journey duration in seconds
-        departure_datetime:
-          type: string
-          format: date-time
-        arrival_datetime:
-          type: string
-          format: date-time
-        route_parts:
-          type: array
-          items:
-            $ref: '#/components/schemas/RoutePart'
     RoutePart:
       type: object
       properties:
@@ -148,6 +118,36 @@ components:
             type: array
             items:
               type: number
+    JourneyRoute:
+      type: object
+      properties:
+        duration:
+          type: integer
+          description: Journey duration in seconds
+        departure_datetime:
+          type: string
+          format: date-time
+        arrival_datetime:
+          type: string
+          format: date-time
+        route_parts:
+          type: array
+          items:
+            $ref: '#/components/schemas/RoutePart'
+    JourneyResponse:
+      type: object
+      properties:
+        request_time:
+          type: string
+          format: date-time
+        source:
+          type: string
+        acknowledgements:
+          type: string
+        routes:
+          type: array
+          items:
+            $ref: '#/components/schemas/JourneyRoute'
   securitySchemes:
     AppIdAuth:
       type: apiKey

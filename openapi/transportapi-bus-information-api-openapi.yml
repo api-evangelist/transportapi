@@ -200,6 +200,30 @@ components:
             type: array
             items:
               $ref: '#/components/schemas/BusDeparture'
+    TimetableStop:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        name:
+          type: string
+        times:
+          type: array
+          items:
+            type: string
+    BusRouteTimetableResponse:
+      type: object
+      properties:
+        operator:
+          type: string
+        line:
+          type: string
+        direction:
+          type: string
+        stops:
+          type: array
+          items:
+            $ref: '#/components/schemas/TimetableStop'
     BusDeparture:
       type: object
       properties:
@@ -230,30 +254,6 @@ components:
               type: boolean
             delay:
               type: string
-    TimetableStop:
-      type: object
-      properties:
-        atcocode:
-          type: string
-        name:
-          type: string
-        times:
-          type: array
-          items:
-            type: string
-    BusRouteTimetableResponse:
-      type: object
-      properties:
-        operator:
-          type: string
-        line:
-          type: string
-        direction:
-          type: string
-        stops:
-          type: array
-          items:
-            $ref: '#/components/schemas/TimetableStop'
     BusTimetableResponse:
       type: object
       properties:
