@@ -144,6 +144,12 @@ apis:
   - type: Signup
     url: https://developer.transportapi.com/
 common:
+  - type: Plans
+    url: plans/transportapi-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/transportapi-rate-limits.yml
+  - type: FinOps
+    url: finops/transportapi-finops.yml
   - type: AgenticAccess
     url: agentic-access/transportapi-agentic-access.yml
   - type: DomainSecurity
