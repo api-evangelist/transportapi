@@ -182,12 +182,10 @@ paths:
                 $ref: '#/components/schemas/BusRouteTimetableResponse'
 components:
   schemas:
-    BusLiveDeparturesResponse:
+    BusTimetableResponse:
       type: object
       properties:
         atcocode:
-          type: string
-        bearing:
           type: string
         stop_name:
           type: string
@@ -195,22 +193,9 @@ components:
           type: string
           format: date-time
         departures:
-          type: object
-          additionalProperties:
-            type: array
-            items:
-              $ref: '#/components/schemas/BusDeparture'
-    TimetableStop:
-      type: object
-      properties:
-        atcocode:
-          type: string
-        name:
-          type: string
-        times:
           type: array
           items:
-            type: string
+            $ref: '#/components/schemas/BusDeparture'
     BusRouteTimetableResponse:
       type: object
       properties:
@@ -254,10 +239,23 @@ components:
               type: boolean
             delay:
               type: string
-    BusTimetableResponse:
+    TimetableStop:
       type: object
       properties:
         atcocode:
+          type: string
+        name:
+          type: string
+        times:
+          type: array
+          items:
+            type: string
+    BusLiveDeparturesResponse:
+      type: object
+      properties:
+        atcocode:
+          type: string
+        bearing:
           type: string
         stop_name:
           type: string
@@ -265,9 +263,11 @@ components:
           type: string
           format: date-time
         departures:
-          type: array
-          items:
-            $ref: '#/components/schemas/BusDeparture'
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              $ref: '#/components/schemas/BusDeparture'
   securitySchemes:
     AppIdAuth:
       type: apiKey
