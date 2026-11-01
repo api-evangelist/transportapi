@@ -1,4 +1,4 @@
-# TransportAPI (transportapi)
+# TransportAPI
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,69 +66,152 @@
 
 TransportAPI is a managed data service provider for UK public transport, offering real-time and scheduled bus, rail, and multimodal transport data via REST and WebSocket APIs to power apps, websites, analytics, and data-mining workflows.
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/transportapi/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/transportapi/refs/heads/main/apis.yml)
+**Areas:** Public Transit · Transport · United Kingdom · Real-Time · Journey Planning · Bus · Rail
 
-## Scope
+## TransportAPI on APIs.io
 
-- **Type:** Index
-- **Position:** Consumer
-- **Access:** 3rd-Party
+Everything profiled for TransportAPI is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/transportapi/](https://apis.io/providers/transportapi/)** — or go straight to one of the APIs or properties below.
 
-## Tags
+### APIs (4)
 
-- Public Transit
-- Transport
-- UK
-- Real-Time
-- Journey Planning
-- Bus
-- Rail
+- [TransportAPI Bus Information API](https://apis.io/apis/transportapi/transportapi-bus-information-api/) — Real-time and scheduled bus departure and arrival data
+- [TransportAPI Journey Planner API](https://apis.io/apis/transportapi/transportapi-journey-planner-api/) — Multimodal journey planning across Great Britain
+- [TransportAPI Places API](https://apis.io/apis/transportapi/transportapi-places-api/) — Transport stops, stations, and points of interest
+- [TransportAPI Rail Information API](https://apis.io/apis/transportapi/transportapi-rail-information-api/) — Real-time and scheduled rail departure and arrival data
 
-## Timestamps
+### Published properties
 
-- **Created:** 2025-05-02
-- **Modified:** 2026-05-19
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-## APIs
+#### Agentic access (1)
 
-### TransportAPI
+Which operations an agent can call, which act, and which need a human in the loop.
 
-UK public transport data API providing real-time bus and rail departures, multimodal journey planning, bus and rail performance analytics, and transport places lookup across Great Britain.
+- [Transportapi Agentic Access](https://apis.io/agentic-access/transportapi/transportapi-agentic-access/)
 
-- **Human URL:** [https://developer.transportapi.com/](https://developer.transportapi.com/)
-- **Base URL:** `https://transportapi.com/v3/uk`
+#### JSON Structure (1)
 
-#### Tags
+Data models expressed in JSON Structure.
 
-- Public Transit
-- Transport
-- UK
-- Real-Time
-- Journey Planning
-- Bus
-- Rail
+- [Transportapi Departure Structure](https://apis.io/json-structure/transportapi/transportapi-departure-structure/)
 
-#### Properties
+#### JSON-LD (1)
 
-- [Documentation](https://developer.transportapi.com/docs/)
-- [OpenAPI](openapi/transportapi-openapi.yml) — [OpenAPI Specification](https://spec.openapis.org/oas/latest.html)
-- [Postman Collection](collections/transportapi.postman_collection.json) — [Postman Collection 2.1](https://schema.getpostman.com/json/collection/v2.1.0/collection.json)
-- [Open Collection](collections/transportapi.opencollection.json) — [Open Collection 1.0](https://schema.opencollection.com/opencollection/v1.0.0.json)
-- [JSON Structure](json-structure/transportapi-departure-structure.json)
-- [JSON-LD](json-ld/transportapi-context.jsonld) — [JSON-LD](https://www.w3.org/TR/json-ld11/)
-- [Spectral Rules](rules/transportapi-rules.yml)
-- [Vocabulary](vocabulary/transportapi-vocabulary.yml)
-- [Sign Up](https://developer.transportapi.com/)
+Linked-data contexts for the provider's vocabulary.
 
-## Common Properties
+- [Transportapi Context](https://apis.io/jsonld/transportapi/transportapi-context/)
 
-- [LinkedIn](https://www.linkedin.com/company/transportapi)
+#### Vocabulary (1)
+
+The provider's domain terms, defined.
+
+- [TransportAPI Vocabulary](https://apis.io/vocabularies/transportapi/transportapi-vocabulary/)
+
+#### Examples (2)
+
+Example requests and responses.
+
+- [Transportapi Get Bus Stop Live Departures Example](https://apis.io/examples/transportapi/transportapi-get-bus-stop-live-departures-example/)
+- [Transportapi Plan Journey Example](https://apis.io/examples/transportapi/transportapi-plan-journey-example/)
+
+#### Collections (5)
+
+Postman and Open Collection request collections.
+
+- [TransportAPI](https://apis.io/collections/transportapi/open-transportapi/)
+- [Transport Bus Information API](https://apis.io/collections/transportapi/open-transportapi-bus-information-api/)
+- [Transport Bus Information Journey Planner API](https://apis.io/collections/transportapi/open-transportapi-journey-planner-api/)
+- [Transport Bus Information Places API](https://apis.io/collections/transportapi/open-transportapi-places-api/)
+- [Transport Bus Information Rail Information API](https://apis.io/collections/transportapi/open-transportapi-rail-information-api/)
+
+#### Governance rules (1)
+
+Spectral rulesets for the provider's contracts.
+
+- [TransportAPI API Rules](https://apis.io/rules/transportapi/transportapi-rules/)
+
+#### Security (2)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Transportapi Authentication](https://apis.io/security/transportapi/transportapi-authentication/)
+- [Transportapi Domain Security](https://apis.io/security/transportapi/transportapi-domain-security/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Transportapi Plans Pricing](https://apis.io/plans/transportapi/transportapi-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Transportapi Rate Limits](https://apis.io/rate-limits/transportapi/transportapi-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Transportapi Finops](https://apis.io/finops/transportapi/transportapi-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
 - [Website](https://www.transportapi.com/)
 - [Documentation](https://developer.transportapi.com/)
-- [Sign Up](https://developer.transportapi.com/)
-- [Git Hub](https://github.com/transportapi)
+- [Blog](https://www.transportapi.com/blog/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 34.8** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 56.1 |
+| Contract governance | 27.3 |
+| Operational transparency | 13.2 |
+| Developer ergonomics | 23.8 |
+| Access clarity | 21.1 |
+
+**Agent readiness 20.7** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | na |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | na |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | na |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 16.7** — Horizontal (data, software, accessibility, platform)
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/transportapi/](https://apis.io/providers/transportapi/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for TransportAPI: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/transportapi/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
